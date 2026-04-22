@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { useMotionValue, motion, useMotionTemplate } from "framer-motion";
-import React from "react";
+import React, { useCallback } from "react";
 
 export const HeroHighlight = ({
   children,
@@ -14,11 +14,12 @@ export const HeroHighlight = ({
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent<HTMLDivElement>) {
+  const handleMouseMove = useCallback(({ currentTarget, clientX, clientY }: React.MouseEvent<HTMLDivElement>) => {
     const { left, top } = currentTarget.getBoundingClientRect();
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
-  }
+  }, [mouseX, mouseY]);
+
   return (
     <div
       className={cn(
@@ -40,7 +41,7 @@ export const HeroHighlight = ({
         style={{ background: "var(--gradient-hero)" }}
       />
       <motion.div
-        className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`radial-gradient(320px circle at ${mouseX}px ${mouseY}px, oklch(0.62 0.18 255 / 0.18), transparent 80%)`,
         }}

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useSyncExternalStore } from "react";
+import { useEffect, useState, useCallback, useSyncExternalStore, useMemo } from "react";
 import { vehicles as seedVehicles, type Vehicle } from "@/data/vehicles";
 
 const KEY = "as.vehicles.v1";
@@ -6,7 +6,7 @@ const KEY = "as.vehicles.v1";
 function read(): Vehicle[] {
   if (typeof window === "undefined") return seedVehicles;
   try {
-    const raw = window.localStorage.getItem(KEY);
+    const raw = localStorage.getItem(KEY);
     if (!raw) return seedVehicles;
     const parsed = JSON.parse(raw) as Vehicle[];
     if (!Array.isArray(parsed)) return seedVehicles;
@@ -18,7 +18,7 @@ function read(): Vehicle[] {
 
 function write(list: Vehicle[]) {
   if (typeof window === "undefined") return;
-  window.localStorage.setItem(KEY, JSON.stringify(list));
+  localStorage.setItem(KEY, JSON.stringify(list));
   window.dispatchEvent(new Event("as:vehicles"));
 }
 
@@ -34,7 +34,7 @@ const subscribe = (cb: () => void) => {
 
 const getSnapshot = () => {
   if (typeof window === "undefined") return JSON.stringify(seedVehicles);
-  return window.localStorage.getItem(KEY) ?? JSON.stringify(seedVehicles);
+  return localStorage.getItem(KEY) ?? JSON.stringify(seedVehicles);
 };
 const getServerSnapshot = () => JSON.stringify(seedVehicles);
 
@@ -43,10 +43,18 @@ export function useVehicles() {
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => setHydrated(true), []);
 
-  // Always use seed for SSR/first render to avoid hydration mismatch
-  const list: Vehicle[] = hydrated
-    ? (() => { try { return JSON.parse(snapshot); } catch { return seedVehicles; } })()
-    : seedVehicles;
+  const list: Vehicle[] = useMemo(() => {
+    if (!hydrated) return seedVehicles;
+    try {
+      return JSON.parse(snapshot);
+    } catch {
+      return seedVehicles;
+    }
+  }, [snapshot, hydrated]);
+
+  const brands = useMemo(() => Array.from(new Set(list.map((v) => v.brand))).sort(), [list]);
+  const fuels = useMemo(() => Array.from(new Set(list.map((v) => v.fuel))), [list]);
+  const transmissions = useMemo(() => Array.from(new Set(list.map((v) => v.transmission))), [list]);
 
   const upsert = useCallback((v: Vehicle) => {
     const current = read();
@@ -66,7 +74,7 @@ export function useVehicles() {
 
   const reset = useCallback(() => write(seedVehicles), []);
 
-  return { vehicles: list, upsert, remove, reset };
+  return { vehicles: list, brands, fuels, transmissions, upsert, remove, reset };
 }
 
 export function getVehicleById(id: string): Vehicle | undefined {

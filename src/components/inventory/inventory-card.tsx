@@ -20,6 +20,7 @@ export function InventoryCard({ v, onClick }: { v: Vehicle; onClick: () => void 
           alt={`${v.brand} ${v.model}`}
           className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
+          decoding="async"
         />
         {v.featured && (
           <span className="absolute top-3 left-3 inline-flex items-center gap-1 bg-foreground text-background text-[10px] font-medium px-2.5 py-1 rounded-full">

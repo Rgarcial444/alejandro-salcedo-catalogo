@@ -99,7 +99,7 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.2 }}
             className="absolute top-0 right-0 w-[78%] h-[62%] rounded-3xl overflow-hidden shadow-[var(--shadow-elegant)] border border-border"
           >
-            <img src={heroImages[0]} alt="Mazda CX-5 premium" className="h-full w-full object-cover" loading="eager" decoding="async" />
+            <img src={heroImages[0]} alt="Mazda CX-5 premium" className="h-full w-full object-cover" loading="eager" decoding="async" fetchpriority="high" />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 40, rotate: -4 }}

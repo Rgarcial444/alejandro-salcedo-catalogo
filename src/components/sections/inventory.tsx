@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Filter, Search, X, ChevronDown, ChevronUp } from "lucide-react";
-import { brands, fuels, transmissions } from "@/data/vehicles";
 import { useVehicles } from "@/hooks/use-vehicles";
 import { InventoryCard } from "@/components/inventory/inventory-card";
 import { Button } from "@/components/ui/button";
@@ -18,7 +17,7 @@ const priceRanges = [
 const conditions = ["Todos", "Nuevo", "Seminuevo"];
 
 export function Inventory() {
-  const { vehicles } = useVehicles();
+  const { vehicles, brands, fuels, transmissions } = useVehicles();
   const navigate = useNavigate();
   const [brand, setBrand] = useState("Todas");
   const [fuel, setFuel] = useState("Todos");
@@ -42,7 +41,7 @@ export function Inventory() {
   }, [vehicles, brand, fuel, trans, condition, priceIdx, query]);
 
   const reset = () => {
-    setBrand("Todas"); setFuel("Todos"); setTrans("Todas"); setPriceIdx(0); setQuery("");
+    setBrand("Todas"); setFuel("Todos"); setTrans("Todas"); setPriceIdx(0); setQuery(""); setCondition("Todos");
   };
 
   const Chip = ({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) => (

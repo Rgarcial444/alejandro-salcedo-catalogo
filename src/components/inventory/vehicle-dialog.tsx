@@ -34,7 +34,7 @@ export function VehicleDialog({
           {/* Gallery */}
           <div className="bg-muted">
             <div className="aspect-[4/3] lg:aspect-auto lg:h-[420px] overflow-hidden">
-              <img src={v.images[active]} alt={v.model} className="h-full w-full object-cover" />
+              <img src={v.images[active]} alt={v.model} className="h-full w-full object-cover" loading="lazy" decoding="async" />
             </div>
             <div className="p-4 flex gap-2 overflow-x-auto">
               {v.images.map((img, i) => (
@@ -45,7 +45,7 @@ export function VehicleDialog({
                     active === i ? "border-foreground" : "border-transparent opacity-70 hover:opacity-100"
                   }`}
                 >
-                  <img src={img} alt="" className="h-full w-full object-cover" />
+                  <img src={img} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
                 </button>
               ))}
             </div>
