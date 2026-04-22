@@ -8,7 +8,6 @@ import { WhyMe } from "@/components/sections/why-me";
 import { Process } from "@/components/sections/process";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Contact } from "@/components/sections/contact";
-import { CarDivider } from "@/components/ui/car-divider";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,7 +38,6 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
-        <CarDivider />
         <Inventory />
         <WhyMe />
         <Process />
