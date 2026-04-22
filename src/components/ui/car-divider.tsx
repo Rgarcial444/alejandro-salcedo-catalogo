@@ -1,9 +1,5 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 
-/**
- * Decorative hand-drawn car that travels left → right along a divider line.
- * Pure ornament. Respects prefers-reduced-motion.
- */
 export function CarDivider({ className = "" }: { className?: string }) {
   const reduce = useReducedMotion();
 
@@ -15,32 +11,10 @@ export function CarDivider({ className = "" }: { className?: string }) {
       {/* Road line */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-transparent via-foreground/25 to-transparent" />
 
-      {/* Subtle dust trail behind car */}
-      <motion.div
-        initial={{ x: "-10%", opacity: 0 }}
-        whileInView={{ x: "100%", opacity: [0, 0.5, 0] }}
-        viewport={{ once: false, amount: 0.4 }}
-        transition={{
-          duration: reduce ? 0 : 6,
-          ease: [0.45, 0.05, 0.55, 0.95],
-        }}
-        className="absolute top-1/2 -translate-y-1/2 left-0 h-px w-24 bg-gradient-to-r from-transparent to-foreground/30"
-      />
-
-      {/* Car traveling along the line */}
-      <motion.div
-        initial={{ x: "-12%" }}
-        whileInView={{ x: "calc(100vw - 100%)" }}
-        viewport={{ once: false, amount: 0.4 }}
-        transition={{
-          duration: reduce ? 0 : 6,
-          ease: [0.45, 0.05, 0.55, 0.95],
-        }}
-        className="absolute top-1/2 -translate-y-1/2 left-0"
-        style={{ willChange: "transform" }}
-      >
+      {/* Centered car silhouette */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <CarSvg className="h-12 w-auto sm:h-14 text-foreground" />
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -48,87 +22,136 @@ export function CarDivider({ className = "" }: { className?: string }) {
 function CarSvg({ className = "" }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 220 80"
+      viewBox="0 0 280 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       role="img"
     >
-      {/* Body — single elegant continuous line */}
+      {/* Sleek luxury sedan silhouette */}
       <path
-        d="M8 56
-           C 14 56, 18 52, 24 48
-           L 44 38
-           C 56 32, 70 28, 88 28
-           L 132 28
-           C 146 28, 158 32, 168 40
-           L 188 50
-           C 196 52, 204 54, 210 56"
+        d="M10 68
+           C 18 68, 26 62, 36 56
+           L 72 42
+           C 90 36, 108 34, 124 33
+           L 168 33
+           C 182 33, 196 35, 208 42
+           L 244 58
+           C 256 62, 268 66, 272 68"
         stroke="currentColor"
-        strokeWidth="1.6"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      {/* Underbody / chassis line */}
+      {/* Lower body */}
       <path
-        d="M14 56 L 60 56 M 86 56 L 152 56 M 178 56 L 210 56"
+        d="M16 68 L 264 68"
         stroke="currentColor"
-        strokeWidth="1.6"
+        strokeWidth="2"
         strokeLinecap="round"
       />
-      {/* Greenhouse — windows */}
+      {/* Roof line - elegant curve */}
       <path
-        d="M58 38
-           L 72 22
-           Q 76 19, 82 19
-           L 124 19
-           Q 130 19, 134 23
-           L 148 38"
+        d="M80 42
+           L 108 26
+           Q 116 22, 128 22
+           L 152 22
+           Q 162 22, 170 28
+           L 200 42"
         stroke="currentColor"
-        strokeWidth="1.4"
+        strokeWidth="1.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       {/* B-pillar */}
       <path
-        d="M104 19 L 104 38"
+        d="M136 22 L 136 42"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      {/* Front pillar */}
+      <path
+        d="M108 26 L 100 42"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      {/* Rear pillar */}
+      <path
+        d="M170 28 L 178 42"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      {/* Door line */}
+      <path
+        d="M100 52 L 100 60"
         stroke="currentColor"
         strokeWidth="1.2"
         strokeLinecap="round"
       />
-      {/* Door handle hint */}
       <path
-        d="M86 44 L 96 44"
+        d="M160 52 L 160 60"
         stroke="currentColor"
-        strokeWidth="1.1"
+        strokeWidth="1.2"
         strokeLinecap="round"
       />
+      {/* Handle hints */}
+      <path
+        d="M108 56 L 126 56"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M172 56 L 190 56"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      {/* Front wheel well */}
+      <path
+        d="M56 68 Q 88 38, 120 68"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+      {/* Rear wheel well */}
+      <path
+        d="M152 68 Q 184 38, 216 68"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+      {/* Wheels - sleek design */}
+      <circle cx="88" cy="68" r="14" stroke="currentColor" strokeWidth="2" fill="white" />
+      <circle cx="88" cy="68" r="6" stroke="currentColor" strokeWidth="1.5" fill="white" />
+      <circle cx="184" cy="68" r="14" stroke="currentColor" strokeWidth="2" fill="white" />
+      <circle cx="184" cy="68" r="6" stroke="currentColor" strokeWidth="1.5" fill="white" />
       {/* Headlight */}
       <path
-        d="M198 48 L 206 50"
+        d="M252 56 L 264 58"
         stroke="currentColor"
-        strokeWidth="1.4"
+        strokeWidth="2"
         strokeLinecap="round"
       />
-      {/* Wheels */}
-      <circle cx="72" cy="58" r="11" stroke="currentColor" strokeWidth="1.6" fill="white" />
-      <circle cx="72" cy="58" r="4" stroke="currentColor" strokeWidth="1.2" fill="white" />
-      <circle cx="166" cy="58" r="11" stroke="currentColor" strokeWidth="1.6" fill="white" />
-      <circle cx="166" cy="58" r="4" stroke="currentColor" strokeWidth="1.2" fill="white" />
-      {/* Wheel arches */}
+      {/* Taillight */}
       <path
-        d="M58 56 Q 72 42, 86 56"
+        d="M16 58 L 22 58"
         stroke="currentColor"
-        strokeWidth="1.3"
+        strokeWidth="2"
         strokeLinecap="round"
-        fill="none"
       />
+      {/* Side accent line */}
       <path
-        d="M152 56 Q 166 42, 180 56"
+        d="M36 62 L 244 62"
         stroke="currentColor"
-        strokeWidth="1.3"
+        strokeWidth="1"
         strokeLinecap="round"
-        fill="none"
+        opacity="0.4"
       />
     </svg>
   );
