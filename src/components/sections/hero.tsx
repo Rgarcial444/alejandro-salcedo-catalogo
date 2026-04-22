@@ -13,7 +13,7 @@ const heroImages = [
 
 export function Hero() {
   return (
-    <HeroHighlight containerClassName="min-h-screen pt-24 pb-16">
+    <HeroHighlight containerClassName="min-h-screen pt-24 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <motion.div
