@@ -34,6 +34,12 @@ export const Route = createRootRoute({
       { name: "author", content: "Alejandro Salcedo" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Alejandro Salcedo · Asesor Automotriz" },
+      { name: "twitter:title", content: "Alejandro Salcedo · Asesor Automotriz" },
+      { property: "og:description", content: "Encuentra tu próximo auto con total confianza. Inventario verificado y atención personalizada." },
+      { name: "twitter:description", content: "Encuentra tu próximo auto con total confianza. Inventario verificado y atención personalizada." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ac11b722-1542-48d2-b594-469c43a32558" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ac11b722-1542-48d2-b594-469c43a32558" },
     ],
     links: [
       {
