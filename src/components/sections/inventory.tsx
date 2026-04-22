@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Filter, Search, X, ChevronDown, ChevronUp } from "lucide-react";
-import { useVehicles } from "@/hooks/use-vehicles";
+import { useVehicles } from "@/hooks/use-vehicles-supabase";
 import { InventoryCard } from "@/components/inventory/inventory-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
