@@ -79,6 +79,7 @@ export const vehicles: Vehicle[] = [
     fuel: "Híbrido",
     transmission: "Automática",
     images: [
+      u("photo-1619682817481-e994bc0e4d5a"),
       u("photo-1623006772851-a8bf2c47b7c6"),
       u("photo-1605559424843-9e4c228bf1c2"),
     ],

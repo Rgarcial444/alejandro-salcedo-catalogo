@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Calendar, Fuel, Gauge, MessageCircle, Settings2, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Fuel, Gauge, Home, MessageCircle, Settings2, ShieldCheck, Sparkles } from "lucide-react";
 import { vehicles as seedVehicles, type Vehicle } from "@/data/vehicles";
 import { getVehicleById } from "@/hooks/use-vehicles";
 import { formatMXN, waLink } from "@/lib/contact";
@@ -61,6 +61,16 @@ function AutoPage() {
   return (
     <div className="min-h-screen bg-background text-foreground antialiased">
       <Navbar />
+
+      {/* Botón flotante para volver al inicio */}
+      <Link
+        to="/"
+        className="fixed bottom-6 left-6 z-50 flex items-center gap-2 bg-foreground text-background px-4 py-3 rounded-full shadow-lg hover:bg-foreground/90 transition"
+      >
+        <Home className="h-4 w-4" />
+        <span className="text-sm font-medium">Inicio</span>
+      </Link>
+
       <main className="pt-24 pb-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
