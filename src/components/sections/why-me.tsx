@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { CalendarCheck, HandCoins, Headphones, ShieldCheck, Sparkles, UserCheck } from "lucide-react";
 import { GradientCard } from "@/components/ui/gradient-card";
 
+const u = (id: string, w = 320) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+
 const benefits = [
   {
     icon: UserCheck,
@@ -10,6 +13,7 @@ const benefits = [
     badgeText: "1 a 1",
     badgeColor: "#3B82F6",
     gradient: "blue" as const,
+    imageUrl: u("photo-1511919884226-fd3cad34687c"),
   },
   {
     icon: ShieldCheck,
@@ -18,6 +22,7 @@ const benefits = [
     badgeText: "Garantizado",
     badgeColor: "#0EA5E9",
     gradient: "green" as const,
+    imageUrl: u("photo-1486006920555-c77dcf18193c"),
   },
   {
     icon: Headphones,
@@ -26,6 +31,7 @@ const benefits = [
     badgeText: "<5 min",
     badgeColor: "#2563EB",
     gradient: "purple" as const,
+    imageUrl: u("photo-1556761175-5973dc0f32e7"),
   },
   {
     icon: HandCoins,
@@ -34,6 +40,7 @@ const benefits = [
     badgeText: "Mejor tasa",
     badgeColor: "#1D4ED8",
     gradient: "blue" as const,
+    imageUrl: u("photo-1554224155-6726b3ff858f"),
   },
   {
     icon: Sparkles,
@@ -42,6 +49,7 @@ const benefits = [
     badgeText: "Siempre contigo",
     badgeColor: "#FB7185",
     gradient: "rose" as const,
+    imageUrl: u("photo-1502877338535-766e1452684a"),
   },
   {
     icon: CalendarCheck,
@@ -50,6 +58,7 @@ const benefits = [
     badgeText: "A tu ritmo",
     badgeColor: "#64748B",
     gradient: "gray" as const,
+    imageUrl: u("photo-1606744824163-985d376605aa"),
   },
 ];
 
@@ -86,6 +95,7 @@ export function WhyMe() {
                 badgeText={b.badgeText}
                 badgeColor={b.badgeColor}
                 gradient={b.gradient}
+                imageUrl={b.imageUrl}
               />
             </motion.div>
           ))}

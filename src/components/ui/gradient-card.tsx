@@ -6,16 +6,16 @@ import { ArrowRight, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const cardVariants = cva(
-  "relative flex flex-col justify-between h-full w-full overflow-hidden rounded-2xl p-6 sm:p-7 shadow-[var(--shadow-card)] transition-shadow duration-300 hover:shadow-[var(--shadow-elegant)]",
+  "relative flex flex-col justify-between h-full w-full overflow-hidden rounded-2xl p-6 sm:p-8 shadow-sm transition-shadow duration-300 hover:shadow-lg",
   {
     variants: {
       gradient: {
-        orange: "bg-gradient-to-br from-rose-50 to-red-100/60 dark:from-rose-950/30 dark:to-red-900/20",
-        gray: "bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800/60 dark:to-slate-900/60",
-        purple: "bg-gradient-to-br from-blue-50 to-sky-100 dark:from-blue-950/40 dark:to-sky-900/30",
-        green: "bg-gradient-to-br from-sky-50 to-cyan-100 dark:from-sky-950/40 dark:to-cyan-900/30",
-        blue: "bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950/40 dark:to-indigo-900/30",
-        rose: "bg-gradient-to-br from-rose-50/80 to-pink-50 dark:from-rose-950/30 dark:to-pink-900/20",
+        orange: "bg-gradient-to-br from-rose-100 to-red-200/50",
+        gray: "bg-gradient-to-br from-slate-100 to-slate-200/60",
+        purple: "bg-gradient-to-br from-blue-100 to-indigo-200/50",
+        green: "bg-gradient-to-br from-sky-100 to-cyan-200/50",
+        blue: "bg-gradient-to-br from-blue-100 to-sky-200/60",
+        rose: "bg-gradient-to-br from-rose-100 to-pink-200/50",
       },
     },
     defaultVariants: {
@@ -34,6 +34,7 @@ export interface GradientCardProps
   ctaText?: string;
   ctaHref?: string;
   icon?: LucideIcon;
+  imageUrl?: string;
 }
 
 const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
@@ -48,17 +49,19 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
       ctaText,
       ctaHref,
       icon: Icon,
+      imageUrl,
       ...props
     },
     ref,
   ) => {
     const cardAnimation = {
-      rest: { y: 0 },
-      hover: { y: -4 },
+      rest: { scale: 1, y: 0 },
+      hover: { scale: 1.02, y: -4 },
     };
-    const iconAnimation = {
+
+    const imageAnimation = {
       rest: { scale: 1, rotate: 0 },
-      hover: { scale: 1.1, rotate: 6 },
+      hover: { scale: 1.12, rotate: 3 },
     };
 
     return (
@@ -72,10 +75,29 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
         className={cn(cardVariants({ gradient }), className)}
         {...props}
       >
-        {/* Decorative icon backdrop */}
-        {Icon && (
+        {/* Decorative background image with animation */}
+        {imageUrl && (
           <motion.div
-            variants={iconAnimation}
+            variants={imageAnimation}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            aria-hidden
+            className="pointer-events-none absolute -right-8 -bottom-8 sm:-right-10 sm:-bottom-10 h-44 w-44 sm:h-52 sm:w-52 rounded-full overflow-hidden opacity-90 mix-blend-multiply"
+          >
+            <img
+              src={imageUrl}
+              alt=""
+              className="h-full w-full object-cover"
+              loading="lazy"
+              draggable={false}
+            />
+            <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-transparent to-white/40" />
+          </motion.div>
+        )}
+
+        {/* Decorative icon backdrop (fallback if no image) */}
+        {Icon && !imageUrl && (
+          <motion.div
+            variants={imageAnimation}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             aria-hidden
             className="pointer-events-none absolute -right-6 -bottom-6 sm:-right-8 sm:-bottom-8"
@@ -84,11 +106,10 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
           </motion.div>
         )}
 
-        <div className="relative flex flex-col h-full">
+        {/* Card content */}
+        <div className="relative z-10 flex flex-col h-full">
           {/* Badge */}
-          <div
-            className="inline-flex items-center self-start gap-1.5 rounded-full bg-white/70 backdrop-blur px-2.5 py-1 text-[11px] font-medium text-foreground/80 border border-white/60"
-          >
+          <div className="inline-flex items-center self-start gap-1.5 rounded-full bg-white/70 backdrop-blur px-2.5 py-1 text-[11px] font-medium text-slate-700 border border-white/60">
             <span
               aria-hidden
               className="h-1.5 w-1.5 rounded-full"
@@ -100,21 +121,25 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
           {/* Icon */}
           {Icon && (
             <div className="mt-5 h-11 w-11 rounded-xl bg-white/70 backdrop-blur border border-white/60 grid place-items-center">
-              <Icon className="h-5 w-5 text-foreground" />
+              <Icon className="h-5 w-5 text-slate-800" />
             </div>
           )}
 
-          {/* Title + description */}
-          <div className="mt-4 flex-1">
-            <h3 className="text-lg font-semibold tracking-tight text-foreground">{title}</h3>
-            <p className="mt-2 text-sm text-foreground/70 leading-relaxed">{description}</p>
+          {/* Title and description */}
+          <div className="mt-4 flex-1 max-w-[78%]">
+            <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-slate-900">
+              {title}
+            </h3>
+            <p className="mt-2 text-sm text-slate-700/85 leading-relaxed">
+              {description}
+            </p>
           </div>
 
           {/* CTA */}
           {ctaText && (
             <a
               href={ctaHref ?? "#"}
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:gap-2.5 transition-all duration-300"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 hover:gap-2.5 transition-all duration-300"
             >
               {ctaText}
               <ArrowRight className="h-4 w-4" />
