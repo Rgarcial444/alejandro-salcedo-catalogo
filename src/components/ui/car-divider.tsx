@@ -22,137 +22,148 @@ export function CarDivider({ className = "" }: { className?: string }) {
 function CarSvg({ className = "" }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 280 100"
+      viewBox="0 0 320 110"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       role="img"
     >
-      {/* Sleek luxury sedan silhouette */}
-      <path
-        d="M10 68
-           C 18 68, 26 62, 36 56
-           L 72 42
-           C 90 36, 108 34, 124 33
-           L 168 33
-           C 182 33, 196 35, 208 42
-           L 244 58
-           C 256 62, 268 66, 272 68"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+      {/* Subtle ground reflection */}
+      <ellipse
+        cx="160"
+        cy="92"
+        rx="135"
+        ry="3"
+        fill="currentColor"
+        opacity="0.08"
       />
-      {/* Lower body */}
+
+      {/* Main body — sleek coupe profile */}
       <path
-        d="M16 68 L 264 68"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      {/* Roof line - elegant curve */}
-      <path
-        d="M80 42
-           L 108 26
-           Q 116 22, 128 22
-           L 152 22
-           Q 162 22, 170 28
-           L 200 42"
+        d="M22 72
+           C 30 72, 38 70, 46 66
+           L 78 52
+           C 92 46, 108 43, 124 42
+           L 196 42
+           C 214 42, 230 46, 244 54
+           L 274 68
+           C 282 70, 290 72, 298 72"
         stroke="currentColor"
         strokeWidth="1.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+
+      {/* Lower sill line */}
+      <path
+        d="M28 78 C 60 80, 260 80, 292 78"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+
+      {/* Greenhouse / roofline — fastback curve */}
+      <path
+        d="M86 52
+           C 100 32, 124 24, 152 24
+           L 190 24
+           C 210 24, 224 30, 236 42"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+
+      {/* A-pillar */}
+      <path
+        d="M118 30 L 110 50"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
       {/* B-pillar */}
       <path
-        d="M136 22 L 136 42"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      {/* Front pillar */}
-      <path
-        d="M108 26 L 100 42"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      {/* Rear pillar */}
-      <path
-        d="M170 28 L 178 42"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      {/* Door line */}
-      <path
-        d="M100 52 L 100 60"
+        d="M168 24 L 168 50"
         stroke="currentColor"
         strokeWidth="1.2"
         strokeLinecap="round"
       />
+      {/* C-pillar */}
       <path
-        d="M160 52 L 160 60"
+        d="M218 30 L 226 46"
         stroke="currentColor"
         strokeWidth="1.2"
         strokeLinecap="round"
       />
-      {/* Handle hints */}
+
+      {/* Window separator (subtle) */}
       <path
-        d="M108 56 L 126 56"
+        d="M124 36 L 162 32 L 168 32 L 214 36"
         stroke="currentColor"
-        strokeWidth="1.2"
+        strokeWidth="0.8"
         strokeLinecap="round"
+        opacity="0.5"
       />
+
+      {/* Character / shoulder line */}
       <path
-        d="M172 56 L 190 56"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        strokeLinecap="round"
-      />
-      {/* Front wheel well */}
-      <path
-        d="M56 68 Q 88 38, 120 68"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      {/* Rear wheel well */}
-      <path
-        d="M152 68 Q 184 38, 216 68"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      {/* Wheels - sleek design */}
-      <circle cx="88" cy="68" r="14" stroke="currentColor" strokeWidth="2" fill="white" />
-      <circle cx="88" cy="68" r="6" stroke="currentColor" strokeWidth="1.5" fill="white" />
-      <circle cx="184" cy="68" r="14" stroke="currentColor" strokeWidth="2" fill="white" />
-      <circle cx="184" cy="68" r="6" stroke="currentColor" strokeWidth="1.5" fill="white" />
-      {/* Headlight */}
-      <path
-        d="M252 56 L 264 58"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      {/* Taillight */}
-      <path
-        d="M16 58 L 22 58"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      {/* Side accent line */}
-      <path
-        d="M36 62 L 244 62"
+        d="M52 60 C 130 56, 210 56, 268 62"
         stroke="currentColor"
         strokeWidth="1"
         strokeLinecap="round"
-        opacity="0.4"
+        opacity="0.55"
       />
+
+      {/* Door cuts */}
+      <path d="M114 56 L 114 70" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" opacity="0.7" />
+      <path d="M168 52 L 168 72" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" opacity="0.7" />
+      <path d="M222 56 L 222 70" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" opacity="0.7" />
+
+      {/* Door handles */}
+      <path d="M132 62 L 152 62" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+      <path d="M186 62 L 206 62" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+
+      {/* Wheel arches */}
+      <path
+        d="M58 72 Q 92 40, 126 72"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
+      <path
+        d="M198 72 Q 232 40, 266 72"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
+
+      {/* Wheels — multi-spoke alloy hint */}
+      <g>
+        <circle cx="92" cy="74" r="14" stroke="currentColor" strokeWidth="1.8" fill="white" />
+        <circle cx="92" cy="74" r="9" stroke="currentColor" strokeWidth="0.9" fill="white" opacity="0.8" />
+        <circle cx="92" cy="74" r="2.2" fill="currentColor" />
+        <path d="M92 65 L 92 83 M83 74 L 101 74 M85.5 67.5 L 98.5 80.5 M98.5 67.5 L 85.5 80.5"
+          stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.65" />
+      </g>
+      <g>
+        <circle cx="232" cy="74" r="14" stroke="currentColor" strokeWidth="1.8" fill="white" />
+        <circle cx="232" cy="74" r="9" stroke="currentColor" strokeWidth="0.9" fill="white" opacity="0.8" />
+        <circle cx="232" cy="74" r="2.2" fill="currentColor" />
+        <path d="M232 65 L 232 83 M223 74 L 241 74 M225.5 67.5 L 238.5 80.5 M238.5 67.5 L 225.5 80.5"
+          stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" opacity="0.65" />
+      </g>
+
+      {/* Front fascia — headlight + grille hint */}
+      <path d="M278 62 L 292 66" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M282 70 L 294 71" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
+
+      {/* Rear fascia — taillight */}
+      <path d="M22 64 L 32 64" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M24 70 L 34 70" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
+
+      {/* Side mirror */}
+      <path d="M120 46 L 116 42" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
     </svg>
   );
 }
