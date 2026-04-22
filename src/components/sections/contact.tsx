@@ -1,19 +1,40 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone, Send, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PHONE, PHONE_TEL, waLink } from "@/lib/contact";
+import { supabase } from "@/lib/supabase";
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", phone: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [saving, setSaving] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consent) {
+      alert("Por favor acepta el tratamiento de datos para continuar.");
+      return;
+    }
+
+    setSaving(true);
+
+    try {
+      await supabase.from("contact_submissions").insert({
+        name: form.name,
+        phone: form.phone,
+        message: form.message,
+      });
+    } catch (err) {
+      console.log("Error saving submission:", err);
+    }
+
     const msg = `Hola Alejandro, soy ${form.name} (${form.phone}). ${form.message}`;
     window.open(waLink(msg), "_blank");
     setSent(true);
+    setSaving(false);
   };
 
   return (
@@ -127,12 +148,46 @@ export function Contact() {
                 className="mt-1.5 w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 resize-none"
               />
             </div>
+
+            <label className="flex items-start gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={consent}
+                onChange={(e) => setConsent(e.target.checked)}
+                className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+              <span className="text-xs text-gray-500">
+                Acepto el{" "}
+                <a href="#aviso" className="text-blue-600 hover:underline">
+                  aviso de privacidad
+                </a>{" "}
+                y el tratamiento de mis datos personales para recibir información sobre vehículos y servicios.
+              </span>
+            </label>
           </div>
 
-          <Button type="submit" variant="hero" size="lg" className="w-full mt-6">
-            <Send className="h-4 w-4" /> Enviar mensaje
+          <Button
+            type="submit"
+            variant="hero"
+            size="lg"
+            className="w-full mt-6"
+            disabled={saving || !consent}
+          >
+            {saving ? (
+              <>
+                <span className="animate-spin mr-2">⏳</span> Enviando...
+              </>
+            ) : sent ? (
+              <>
+                <Check className="h-4 w-4" /> Enviado
+              </>
+            ) : (
+              <>
+                <Send className="h-4 w-4" /> Enviar mensaje
+              </>
+            )}
           </Button>
-          {sent && <p className="text-xs text-center text-gray-500 mt-3">Abriendo WhatsApp...</p>}
+          {sent && <p className="text-xs text-center text-green-600 mt-3">¡Mensaje enviado! Te contactaré pronto.</p>}
           <p className="text-[11px] text-center text-gray-400 mt-3">
             Al enviar, aceptas ser contactado por Alejandro Salcedo.
           </p>
