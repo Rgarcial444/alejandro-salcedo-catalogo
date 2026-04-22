@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Calendar, Fuel, Gauge, Home, MessageCircle, Settings2, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Fuel, Gauge, MessageCircle, Settings2, ShieldCheck, Sparkles } from "lucide-react";
 import { vehicles as seedVehicles, type Vehicle } from "@/data/vehicles";
 import { getVehicleById } from "@/hooks/use-vehicles";
 import { formatMXN, waLink } from "@/lib/contact";
@@ -62,13 +62,17 @@ function AutoPage() {
     <div className="min-h-screen bg-background text-foreground antialiased">
       <Navbar />
 
-      {/* Botón flotante para volver al inicio */}
+      {/* Botón flotante para volver al inventario */}
       <Link
         to="/"
-        className="fixed bottom-6 left-6 z-50 flex items-center gap-2 bg-foreground text-background px-4 py-3 rounded-full shadow-lg hover:bg-foreground/90 transition"
+        className="fixed bottom-6 left-6 z-50 flex items-center gap-2 px-4 py-3 rounded-full shadow-lg transition"
+        style={{
+          background: "linear-gradient(#fff, #fff) padding-box, linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899, #f97316) border-box",
+          border: "2px solid transparent",
+        }}
       >
-        <Home className="h-4 w-4" />
-        <span className="text-sm font-medium">Inicio</span>
+        <ArrowLeft className="h-4 w-4 text-gray-900" />
+        <span className="text-sm font-medium text-gray-900">Volver</span>
       </Link>
 
       <main className="pt-24 pb-20">

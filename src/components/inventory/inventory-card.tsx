@@ -29,6 +29,13 @@ export function InventoryCard({ v, onClick }: { v: Vehicle; onClick: () => void 
         <span className="absolute top-3 right-3 bg-background/95 backdrop-blur text-xs font-medium px-2.5 py-1 rounded-full border border-border">
           {v.year}
         </span>
+        <span className={`absolute bottom-3 left-3 text-xs font-medium px-2.5 py-1 rounded-full ${
+          v.condition === "Nuevo" 
+            ? "bg-green-500 text-white" 
+            : "bg-amber-500 text-white"
+        }`}>
+          {v.condition}
+        </span>
       </div>
       <div className="p-5">
         <p className="text-xs text-muted-foreground uppercase tracking-wide">{v.brand}</p>

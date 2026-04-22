@@ -9,6 +9,7 @@ export type Vehicle = {
   fuel: "Gasolina" | "Híbrido" | "Eléctrico" | "Diésel";
   transmission: "Automática" | "Manual";
   featured?: boolean;
+  condition: "Nuevo" | "Seminuevo";
   images: string[];
   description: string;
   specs: { label: string; value: string }[];
@@ -29,6 +30,7 @@ export const vehicles: Vehicle[] = [
     fuel: "Gasolina",
     transmission: "Automática",
     featured: true,
+    condition: "Seminuevo",
     images: [
       u("photo-1503376780353-7e6692767b70"),
       u("photo-1494976388531-d1058494cdd8"),
@@ -54,6 +56,7 @@ export const vehicles: Vehicle[] = [
     fuel: "Eléctrico",
     transmission: "Automática",
     featured: true,
+    condition: "Seminuevo",
     images: [
       u("photo-1560958089-b8a1929cea89"),
       u("photo-1571987502227-9231b837d92a"),
@@ -78,6 +81,7 @@ export const vehicles: Vehicle[] = [
     mileage: 52800,
     fuel: "Híbrido",
     transmission: "Automática",
+    condition: "Seminuevo",
     images: [
       u("photo-1619682817481-e994bc0e4d5a"),
       u("photo-1623006772851-a8bf2c47b7c6"),
@@ -103,6 +107,7 @@ export const vehicles: Vehicle[] = [
     fuel: "Gasolina",
     transmission: "Automática",
     featured: true,
+    condition: "Seminuevo",
     images: [
       u("photo-1555215695-3004980ad54e"),
       u("photo-1606664515524-ed2f786a0bd6"),
@@ -126,6 +131,7 @@ export const vehicles: Vehicle[] = [
     mileage: 18200,
     fuel: "Gasolina",
     transmission: "Automática",
+    condition: "Seminuevo",
     images: [
       u("photo-1612825173281-9a193378527e"),
       u("photo-1606152421802-db97b9c7a11b"),
@@ -149,6 +155,7 @@ export const vehicles: Vehicle[] = [
     mileage: 41200,
     fuel: "Gasolina",
     transmission: "Automática",
+    condition: "Seminuevo",
     images: [
       u("photo-1568844293986-8d0400bd4745"),
       u("photo-1502877338535-766e1452684a"),

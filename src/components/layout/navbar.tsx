@@ -45,7 +45,7 @@ export function Navbar() {
           {links.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={`/${l.href}`}
               className="hover:text-foreground transition-colors"
             >
               {l.label}
@@ -80,7 +80,7 @@ export function Navbar() {
             {links.map((l) => (
               <a
                 key={l.href}
-                href={l.href}
+                href={`/${l.href}`}
                 onClick={() => setOpen(false)}
                 className="text-sm text-foreground/80 py-2"
               >

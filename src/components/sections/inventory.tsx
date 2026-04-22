@@ -15,6 +15,8 @@ const priceRanges = [
   { label: "$600k+", min: 600000, max: Infinity },
 ];
 
+const conditions = ["Todos", "Nuevo", "Seminuevo"];
+
 export function Inventory() {
   const { vehicles } = useVehicles();
   const navigate = useNavigate();
@@ -22,6 +24,7 @@ export function Inventory() {
   const [fuel, setFuel] = useState("Todos");
   const [trans, setTrans] = useState("Todas");
   const [priceIdx, setPriceIdx] = useState(0);
+  const [condition, setCondition] = useState("Todos");
   const [query, setQuery] = useState("");
   const [showFilters, setShowFilters] = useState(false);
 
@@ -31,11 +34,12 @@ export function Inventory() {
       if (brand !== "Todas" && v.brand !== brand) return false;
       if (fuel !== "Todos" && v.fuel !== fuel) return false;
       if (trans !== "Todas" && v.transmission !== trans) return false;
+      if (condition !== "Todos" && v.condition !== condition) return false;
       if (v.price < range.min || v.price > range.max) return false;
       if (query && !`${v.brand} ${v.model}`.toLowerCase().includes(query.toLowerCase())) return false;
       return true;
     });
-  }, [vehicles, brand, fuel, trans, priceIdx, query]);
+  }, [vehicles, brand, fuel, trans, condition, priceIdx, query]);
 
   const reset = () => {
     setBrand("Todas"); setFuel("Todos"); setTrans("Todas"); setPriceIdx(0); setQuery("");
@@ -106,11 +110,19 @@ export function Inventory() {
                 className="overflow-hidden"
               >
                 <div className="space-y-3 pt-4">
-                  <div>
-                    <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Marca</p>
-                    <div className="flex flex-wrap gap-2">
-                      <Chip label="Todas" active={brand === "Todas"} onClick={() => setBrand("Todas")} />
-                      {brands.map((b) => <Chip key={b} label={b} active={brand === b} onClick={() => setBrand(b)} />)}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Condición</p>
+                      <div className="flex flex-wrap gap-2">
+                        {conditions.map((c) => <Chip key={c} label={c} active={condition === c} onClick={() => setCondition(c)} />)}
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Marca</p>
+                      <div className="flex flex-wrap gap-2">
+                        <Chip label="Todas" active={brand === "Todas"} onClick={() => setBrand("Todas")} />
+                        {brands.map((b) => <Chip key={b} label={b} active={brand === b} onClick={() => setBrand(b)} />)}
+                      </div>
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
