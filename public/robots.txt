@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alejandrosalcedo.mx/sitemap.xml
+
+User-agent: *
+Disallow: /admin
+Disallow: /login

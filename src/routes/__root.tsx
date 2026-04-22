@@ -56,11 +56,8 @@ export const Route = createRootRoute({
         content:
           "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ac11b722-1542-48d2-b594-469c43a32558",
       },
-      {
-        name: "twitter:image",
-        content:
-          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ac11b722-1542-48d2-b594-469c43a32558",
-      },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ac11b722-1542-48d2-b594-469c43a32558" },
+      { tagName: "link", rel: "canonical", href: "https://alejandrosalcedo.mx/" },
     ],
     links: [
       {
