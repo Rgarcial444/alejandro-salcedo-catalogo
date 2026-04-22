@@ -192,24 +192,13 @@ function AdminPage() {
 
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <Label>Imágenes (URLs)</Label>
-                  <Button variant="ghost" size="sm" onClick={() => setEditing({ ...editing, images: [...editing.images, ""] })}>
-                    <Plus className="h-3 w-3" /> Agregar
-                  </Button>
+                  <Label>Fotos del auto</Label>
+                  <span className="text-xs text-muted-foreground">{editing.images.length} foto(s)</span>
                 </div>
-                <div className="space-y-2">
-                  {editing.images.map((img, i) => (
-                    <div key={i} className="flex gap-2">
-                      <Input value={img} placeholder="https://..." onChange={(e) => {
-                        const next = [...editing.images]; next[i] = e.target.value;
-                        setEditing({ ...editing, images: next });
-                      }} />
-                      <Button variant="ghost" size="icon" onClick={() => setEditing({ ...editing, images: editing.images.filter((_, j) => j !== i) })}>
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  ))}
-                </div>
+                <ImageUploader
+                  images={editing.images}
+                  onChange={(next) => setEditing({ ...editing, images: next })}
+                />
               </div>
 
               <div>
