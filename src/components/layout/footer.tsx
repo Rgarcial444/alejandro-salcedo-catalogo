@@ -34,7 +34,7 @@ export function Footer() {
           <ul className="space-y-3 text-sm text-background/70">
             <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> <a href={`tel:${PHONE_TEL}`}>{PHONE}</a></li>
             <li className="flex items-center gap-2"><MessageCircle className="h-4 w-4" /> <a href={waLink("Hola Alejandro")} target="_blank" rel="noreferrer">WhatsApp</a></li>
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> contacto@alejandrosalcedo.mx</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4" /><span>contacto@alejandrosalcedo.mx</span></li>
           </ul>
           <div className="mt-5 flex gap-3">
             <a href="#" className="h-9 w-9 grid place-items-center rounded-full bg-background/10 hover:bg-background/20"><Instagram className="h-4 w-4" /></a>
