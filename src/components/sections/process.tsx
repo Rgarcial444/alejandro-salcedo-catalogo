@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const steps = [
   { n: "01", title: "Explora el inventario", desc: "Navega autos verificados con fotos, especificaciones y precios claros." },
   { n: "02", title: "Solicita información", desc: "Contáctame por WhatsApp o el formulario para resolver todas tus dudas." },
-  { n: "03", title: "Agenda una cita", desc: "Coordinamos una prueba de manejo en el horario que mejor te acomode." },
+  { n: "03", title: "Agenda una cita", desc: "Coordinamos una cita para ver el auto en el horario que mejor te acomode." },
   { n: "04", title: "Cierra tu compra", desc: "Te acompaño con el papeleo, financiamiento y entrega de tu auto." },
 ];
 

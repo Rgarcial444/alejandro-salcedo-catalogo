@@ -54,7 +54,7 @@ export function Contact() {
                 <Mail className="h-5 w-5" />
               </span>
               <div>
-                <p className="text-sm font-medium">contacto@alejandrosalcedo.mx</p>
+                <p className="text-sm font-medium">alejandrosalcedo.asesor@gmail.com</p>
                 <p className="text-xs text-muted-foreground">Te respondo el mismo día</p>
               </div>
             </div>

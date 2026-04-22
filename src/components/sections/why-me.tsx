@@ -54,7 +54,7 @@ const benefits = [
   {
     icon: CalendarCheck,
     title: "Citas flexibles",
-    description: "Agenda pruebas de manejo en horarios que se ajusten a ti.",
+    description: "Agenda cita para ver el auto en el horario que mejor te acomode.",
     badgeText: "A tu ritmo",
     badgeColor: "#64748B",
     gradient: "gray" as const,

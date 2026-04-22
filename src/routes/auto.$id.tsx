@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Calendar, Fuel, Gauge, MessageCircle, Settings2, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, Fuel, Gauge, MessageCircle, Settings2, ShieldCheck, Sparkles } from "lucide-react";
 import { vehicles as seedVehicles, type Vehicle } from "@/data/vehicles";
 import { getVehicleById } from "@/hooks/use-vehicles";
 import { formatMXN, waLink } from "@/lib/contact";
@@ -213,15 +213,12 @@ function AutoPage() {
           <div className="bg-foreground text-background rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
               <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight">¿Te interesa este auto?</h3>
-              <p className="mt-2 text-background/70">Agenda una prueba de manejo o resuelve cualquier duda al instante.</p>
+              <p className="mt-2 text-background/70">Escríbeme por WhatsApp y resolvemos cualquier duda.</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
               <a href={waLink(msg)} target="_blank" rel="noreferrer">
                 <Button variant="whatsapp" size="lg" className="w-full"><MessageCircle className="h-4 w-4" /> WhatsApp</Button>
               </a>
-              <Link to="/" hash="contacto">
-                <Button size="lg" className="w-full bg-background text-foreground hover:bg-background/90"><Calendar className="h-4 w-4" /> Agendar</Button>
-              </Link>
             </div>
           </div>
         </section>
