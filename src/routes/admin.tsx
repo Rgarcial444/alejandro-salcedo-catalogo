@@ -41,6 +41,36 @@ const empty = (): Vehicle => ({
   ],
 });
 
+function NumberField({
+  label,
+  value,
+  onChange,
+  placeholder,
+  maxLength,
+}: {
+  label: string;
+  value: number;
+  onChange: (val: number) => void;
+  placeholder?: string;
+  maxLength?: number;
+}) {
+  return (
+    <Field label={label}>
+      <Input
+        type="text"
+        inputMode="numeric"
+        pattern="[0-9]*"
+        value={value || ""}
+        onChange={(e) => {
+          const cleaned = e.target.value.replace(/\D/g, "").slice(0, maxLength || 10);
+          onChange(cleaned ? parseInt(cleaned, 10) : 0);
+        }}
+        placeholder={placeholder}
+      />
+    </Field>
+  );
+}
+
 function AdminPage() {
   const { vehicles, upsert, remove, reset } = useVehicles();
   const { user, signOut, loading: authLoading } = useAuth();
@@ -222,34 +252,31 @@ function AdminPage() {
                     onChange={(e) => setEditing({ ...editing, model: e.target.value })}
                   />
                 </Field>
-                <Field label="Año">
-                  <Input
-                    type="number"
-                    value={editing.year}
-                    onChange={(e) => setEditing({ ...editing, year: +e.target.value })}
-                  />
-                </Field>
-                <Field label="Kilometraje">
-                  <Input
-                    type="number"
-                    value={editing.mileage}
-                    onChange={(e) => setEditing({ ...editing, mileage: +e.target.value })}
-                  />
-                </Field>
-                <Field label="Precio (MXN)">
-                  <Input
-                    type="number"
-                    value={editing.price}
-                    onChange={(e) => setEditing({ ...editing, price: +e.target.value })}
-                  />
-                </Field>
-                <Field label="Mensualidad estimada">
-                  <Input
-                    type="number"
-                    value={editing.monthly}
-                    onChange={(e) => setEditing({ ...editing, monthly: +e.target.value })}
-                  />
-                </Field>
+                <NumberField
+                  label="Año"
+                  value={editing.year}
+                  onChange={(val) => setEditing({ ...editing, year: val })}
+                  placeholder="2024"
+                  maxLength={4}
+                />
+                <NumberField
+                  label="Kilometraje"
+                  value={editing.mileage}
+                  onChange={(val) => setEditing({ ...editing, mileage: val })}
+                  placeholder="0"
+                />
+                <NumberField
+                  label="Precio (MXN)"
+                  value={editing.price}
+                  onChange={(val) => setEditing({ ...editing, price: val })}
+                  placeholder="0"
+                />
+                <NumberField
+                  label="Mensualidad estimada"
+                  value={editing.monthly}
+                  onChange={(val) => setEditing({ ...editing, monthly: val })}
+                  placeholder="0"
+                />
                 <Field label="Combustible">
                   <select
                     className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm"
@@ -258,9 +285,10 @@ function AdminPage() {
                       setEditing({ ...editing, fuel: e.target.value as Vehicle["fuel"] })
                     }
                   >
-                    {["Gasolina", "Híbrido", "Eléctrico", "Diésel"].map((f) => (
+                    {["Gasolina", "Híbrido", "Eléctrico", "Diésel", "Gas Natural", "Híbrido Enchufable"].map((f) => (
                       <option key={f} value={f}>
                         {f}
+                      </option>
                       </option>
                     ))}
                   </select>
@@ -276,9 +304,10 @@ function AdminPage() {
                       })
                     }
                   >
-                    {["Automática", "Manual"].map((t) => (
+                    {["Automática", "Manual", "CVT", "DSG", "Tiptronic"].map((t) => (
                       <option key={t} value={t}>
                         {t}
+                      </option>
                       </option>
                     ))}
                   </select>
