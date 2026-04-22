@@ -32,6 +32,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+// Página principal
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground antialiased scroll-smooth">
