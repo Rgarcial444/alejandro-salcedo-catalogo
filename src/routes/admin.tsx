@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { useVehicles, slugify } from "@/hooks/use-vehicles";
+import { useVehicles, slugify } from "@/hooks/use-vehicles-supabase";
 import type { Vehicle } from "@/data/vehicles";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,6 +31,7 @@ const empty = (): Vehicle => ({
   fuel: "Gasolina",
   transmission: "Automática",
   featured: false,
+  condition: "Seminuevo",
   images: [],
   description: "",
   specs: [
@@ -97,7 +98,7 @@ function AdminPage() {
           <p className="text-sm font-medium text-primary">Panel de administración</p>
           <h1 className="mt-1 text-3xl sm:text-4xl font-semibold tracking-tight">Inventario</h1>
           <p className="mt-2 text-muted-foreground">
-            Gestiona los autos disponibles. Los cambios se guardan localmente en este navegador (modo demo).
+            Gestiona los autos disponibles. Los cambios se sincronizan con la base de datos.
           </p>
         </div>
 
@@ -177,6 +178,12 @@ function AdminPage() {
                 <Field label="Transmisión">
                   <select className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm" value={editing.transmission} onChange={(e) => setEditing({ ...editing, transmission: e.target.value as Vehicle["transmission"] })}>
                     {["Automática", "Manual"].map((t) => <option key={t} value={t}>{t}</option>)}
+                  </select>
+                </Field>
+                <Field label="Condición">
+                  <select className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm" value={editing.condition} onChange={(e) => setEditing({ ...editing, condition: e.target.value as "Nuevo" | "Seminuevo" })}>
+                    <option value="Seminuevo">Seminuevo</option>
+                    <option value="Nuevo">Nuevo</option>
                   </select>
                 </Field>
               </div>

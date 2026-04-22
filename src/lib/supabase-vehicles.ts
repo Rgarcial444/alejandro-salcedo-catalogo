@@ -29,3 +29,36 @@ export async function fetchVehiclesFromSupabase(): Promise<Vehicle[]> {
     specs: v.specs || [],
   }));
 }
+
+export async function saveVehicleToSupabase(vehicle: Vehicle): Promise<void> {
+  const { error } = await supabase.from("vehicles").upsert({
+    id: vehicle.id,
+    brand: vehicle.brand,
+    model: vehicle.model,
+    year: vehicle.year,
+    price: vehicle.price,
+    monthly: vehicle.monthly,
+    mileage: vehicle.mileage,
+    fuel: vehicle.fuel,
+    transmission: vehicle.transmission,
+    featured: vehicle.featured,
+    condition: vehicle.condition || "Seminuevo",
+    images: vehicle.images,
+    description: vehicle.description,
+    specs: vehicle.specs,
+  }, { onConflict: "id" });
+
+  if (error) {
+    console.error("Error saving vehicle:", error);
+    throw error;
+  }
+}
+
+export async function deleteVehicleFromSupabase(id: string): Promise<void> {
+  const { error } = await supabase.from("vehicles").delete().eq("id", id);
+
+  if (error) {
+    console.error("Error deleting vehicle:", error);
+    throw error;
+  }
+}

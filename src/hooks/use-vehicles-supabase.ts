@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useSyncExternalStore } from "react";
 import { vehicles as seedVehicles, type Vehicle } from "@/data/vehicles";
-import { fetchVehiclesFromSupabase } from "@/lib/supabase-vehicles";
+import { fetchVehiclesFromSupabase, saveVehicleToSupabase, deleteVehicleFromSupabase } from "@/lib/supabase-vehicles";
 
 const KEY = "as.vehicles.v1";
 const SUPABASE_KEY = "as.supabase.loaded";
@@ -84,7 +84,7 @@ export function useVehicles() {
   const fuels = [...new Set(list.map((v) => v.fuel))];
   const transmissions = [...new Set(list.map((v) => v.transmission))];
 
-  const upsert = useCallback((v: Vehicle) => {
+  const upsert = useCallback(async (v: Vehicle) => {
     const current = read();
     const idx = current.findIndex((x) => x.id === v.id);
     if (idx >= 0) {
@@ -94,10 +94,20 @@ export function useVehicles() {
     } else {
       write([v, ...current]);
     }
+    try {
+      await saveVehicleToSupabase(v);
+    } catch (e) {
+      console.log("Error saving to Supabase:", e);
+    }
   }, []);
 
-  const remove = useCallback((id: string) => {
+  const remove = useCallback(async (id: string) => {
     write(read().filter((v) => v.id !== id));
+    try {
+      await deleteVehicleFromSupabase(id);
+    } catch (e) {
+      console.log("Error deleting from Supabase:", e);
+    }
   }, []);
 
   const reset = useCallback(() => {
@@ -110,4 +120,13 @@ export function useVehicles() {
 
 export function getVehicleById(id: string): Vehicle | undefined {
   return read().find((v) => v.id === id);
+}
+
+export function slugify(s: string) {
+  return s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
