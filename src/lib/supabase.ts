@@ -5,4 +5,7 @@ const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-export const ALLOWED_EMAIL = "alejandrosalcedo.asesor@gmail.com";
+export const ALLOWED_EMAILS = [
+  "alejandrosalcedo.asesor@gmail.com",
+  "rgarcialimon@gmail.com"
+];

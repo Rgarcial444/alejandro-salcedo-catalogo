@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import { supabase, ALLOWED_EMAIL } from "@/lib/supabase";
+import { supabase, ALLOWED_EMAILS } from "@/lib/supabase";
 import type { User } from "@supabase/supabase-js";
 
 type AuthContextType = {
@@ -32,7 +32,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signIn = async (email: string): Promise<{ error: string | null }> => {
     const normalizedEmail = email.toLowerCase().trim();
     
-    if (normalizedEmail !== ALLOWED_EMAIL.toLowerCase()) {
+    const isEmailAllowed = ALLOWED_EMAILS.some(
+      allowed => allowed.toLowerCase() === normalizedEmail
+    );
+    
+    if (!isEmailAllowed) {
       return { error: "Correo no autorizado" };
     }
 
@@ -54,7 +58,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await supabase.auth.signOut();
   };
 
-  const isAllowed = user?.email?.toLowerCase() === ALLOWED_EMAIL.toLowerCase() || false;
+  const userEmail = user?.email?.toLowerCase() ?? "";
+  const isAllowed = ALLOWED_EMAILS.some(email => email.toLowerCase() === userEmail);
 
   return (
     <AuthContext.Provider value={{ user, loading, signIn, signOut, isAllowed }}>
