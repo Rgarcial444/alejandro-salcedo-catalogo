@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { PHONE, PHONE_TEL, waLink } from "@/lib/contact";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 
 const links = [
   { href: "#inventario", label: "Inventario" },
@@ -62,12 +63,16 @@ export function Navbar() {
           <a href={waLink("Hola Alejandro, vi tu sitio y me interesa información.")} target="_blank" rel="noreferrer">
             <Button variant="hero" size="sm">Contactar</Button>
           </a>
+          <ThemeToggle />
           <Link to="/admin" className="text-xs text-muted-foreground hover:text-foreground ml-1" title="Panel">Admin</Link>
         </div>
 
-        <button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="Menú">
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="md:hidden flex items-center gap-1">
+          <ThemeToggle />
+          <button className="p-2" onClick={() => setOpen(!open)} aria-label="Menú">
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {open && (

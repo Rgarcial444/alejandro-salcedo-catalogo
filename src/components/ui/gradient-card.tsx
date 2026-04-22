@@ -10,12 +10,12 @@ const cardVariants = cva(
   {
     variants: {
       gradient: {
-        orange: "bg-gradient-to-br from-orange-50 to-amber-100",
-        gray: "bg-gradient-to-br from-slate-50 to-slate-100",
-        purple: "bg-gradient-to-br from-violet-50 to-indigo-100",
-        green: "bg-gradient-to-br from-emerald-50 to-teal-100",
-        blue: "bg-gradient-to-br from-sky-50 to-blue-100",
-        rose: "bg-gradient-to-br from-rose-50 to-pink-100",
+        orange: "bg-gradient-to-br from-rose-50 to-red-100/60 dark:from-rose-950/30 dark:to-red-900/20",
+        gray: "bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800/60 dark:to-slate-900/60",
+        purple: "bg-gradient-to-br from-blue-50 to-sky-100 dark:from-blue-950/40 dark:to-sky-900/30",
+        green: "bg-gradient-to-br from-sky-50 to-cyan-100 dark:from-sky-950/40 dark:to-cyan-900/30",
+        blue: "bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950/40 dark:to-indigo-900/30",
+        rose: "bg-gradient-to-br from-rose-50/80 to-pink-50 dark:from-rose-950/30 dark:to-pink-900/20",
       },
     },
     defaultVariants: {
