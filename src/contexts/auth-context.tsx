@@ -45,7 +45,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { error } = await supabase.auth.signInWithOtp({
       email: normalizedEmail,
       options: {
-        emailRedirectTo: window.location.origin + "/admin",
+        emailRedirectTo: "https://alejandro-salcedo-catalogo.lovable.app/admin",
       },
     });
 
