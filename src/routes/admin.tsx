@@ -1,12 +1,13 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState, useEffect } from "react";
 import { useVehicles, slugify } from "@/hooks/use-vehicles-supabase";
+import { useAuth } from "@/contexts/auth-context";
 import type { Vehicle } from "@/data/vehicles";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, Pencil, Plus, RotateCcw, Trash2, X, Save } from "lucide-react";
+import { ArrowLeft, Pencil, Plus, RotateCcw, Trash2, X, Save, LogOut } from "lucide-react";
 import { formatMXN } from "@/lib/contact";
 import { ImageUploader } from "@/components/admin/image-uploader";
 
@@ -42,8 +43,21 @@ const empty = (): Vehicle => ({
 
 function AdminPage() {
   const { vehicles, upsert, remove, reset } = useVehicles();
+  const { user, signOut, loading: authLoading } = useAuth();
+  const navigate = useNavigate();
   const [editing, setEditing] = useState<Vehicle | null>(null);
   const [isNew, setIsNew] = useState(false);
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate({ to: "/login" });
+    }
+  }, [user, authLoading, navigate]);
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate({ to: "/login" });
+  };
 
   const startNew = () => {
     setEditing(empty());
@@ -83,6 +97,9 @@ function AdminPage() {
             <ArrowLeft className="h-4 w-4" /> Volver al sitio
           </Link>
           <div className="flex items-center gap-2">
+            <Button variant="ghost" size="sm" onClick={handleSignOut}>
+              <LogOut className="h-4 w-4" /> Salir
+            </Button>
             <Button variant="outline" size="sm" onClick={() => { if (confirm("¿Restablecer al inventario inicial?")) reset(); }}>
               <RotateCcw className="h-4 w-4" /> Restablecer
             </Button>
