@@ -9,7 +9,6 @@ import { ThemeToggle } from "@/components/layout/theme-toggle";
 const links = [
   { href: "#inventario", label: "Inventario" },
   { href: "#beneficios", label: "Por qué elegirme" },
-  { href: "#proceso", label: "Proceso" },
   { href: "#testimonios", label: "Testimonios" },
   { href: "#contacto", label: "Contacto" },
 ];

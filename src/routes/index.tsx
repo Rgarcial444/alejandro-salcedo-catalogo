@@ -5,7 +5,6 @@ import { FloatingWhatsApp } from "@/components/layout/floating-whatsapp";
 import { Hero } from "@/components/sections/hero";
 import { Inventory } from "@/components/sections/inventory";
 import { WhyMe } from "@/components/sections/why-me";
-import { Process } from "@/components/sections/process";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Contact } from "@/components/sections/contact";
 
@@ -41,7 +40,6 @@ function Index() {
         <Hero />
         <Inventory />
         <WhyMe />
-        <Process />
         <Testimonials />
         <Contact />
       </main>
