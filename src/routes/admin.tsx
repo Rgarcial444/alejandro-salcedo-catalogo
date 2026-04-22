@@ -289,7 +289,6 @@ function AdminPage() {
                       <option key={f} value={f}>
                         {f}
                       </option>
-                      </option>
                     ))}
                   </select>
                 </Field>
@@ -307,7 +306,6 @@ function AdminPage() {
                     {["Automática", "Manual", "CVT", "DSG", "Tiptronic"].map((t) => (
                       <option key={t} value={t}>
                         {t}
-                      </option>
                       </option>
                     ))}
                   </select>
