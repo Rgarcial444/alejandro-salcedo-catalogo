@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Pencil, Plus, RotateCcw, Trash2, X, Save } from "lucide-react";
 import { formatMXN } from "@/lib/contact";
+import { ImageUploader } from "@/components/admin/image-uploader";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -30,7 +31,7 @@ const empty = (): Vehicle => ({
   fuel: "Gasolina",
   transmission: "Automática",
   featured: false,
-  images: [""],
+  images: [],
   description: "",
   specs: [
     { label: "Motor", value: "" },
@@ -62,11 +63,11 @@ function AdminPage() {
     const cleaned: Vehicle = {
       ...editing,
       id,
-      images: editing.images.map((i) => i.trim()).filter(Boolean),
+      images: editing.images.filter(Boolean),
       specs: editing.specs.filter((s) => s.label.trim() && s.value.trim()),
     };
     if (!cleaned.brand || !cleaned.model || cleaned.images.length === 0) {
-      alert("Marca, modelo y al menos una imagen son obligatorios.");
+      alert("Marca, modelo y al menos una foto son obligatorios.");
       return;
     }
     upsert(cleaned);
@@ -191,24 +192,13 @@ function AdminPage() {
 
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <Label>Imágenes (URLs)</Label>
-                  <Button variant="ghost" size="sm" onClick={() => setEditing({ ...editing, images: [...editing.images, ""] })}>
-                    <Plus className="h-3 w-3" /> Agregar
-                  </Button>
+                  <Label>Fotos del auto</Label>
+                  <span className="text-xs text-muted-foreground">{editing.images.length} foto(s)</span>
                 </div>
-                <div className="space-y-2">
-                  {editing.images.map((img, i) => (
-                    <div key={i} className="flex gap-2">
-                      <Input value={img} placeholder="https://..." onChange={(e) => {
-                        const next = [...editing.images]; next[i] = e.target.value;
-                        setEditing({ ...editing, images: next });
-                      }} />
-                      <Button variant="ghost" size="icon" onClick={() => setEditing({ ...editing, images: editing.images.filter((_, j) => j !== i) })}>
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  ))}
-                </div>
+                <ImageUploader
+                  images={editing.images}
+                  onChange={(next) => setEditing({ ...editing, images: next })}
+                />
               </div>
 
               <div>

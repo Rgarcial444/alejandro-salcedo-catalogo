@@ -42,7 +42,7 @@ export const HeroHighlight = ({
       <motion.div
         className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
-          background: useMotionTemplate`radial-gradient(320px circle at ${mouseX}px ${mouseY}px, oklch(0.62 0.21 295 / 0.18), transparent 80%)`,
+          background: useMotionTemplate`radial-gradient(320px circle at ${mouseX}px ${mouseY}px, oklch(0.62 0.18 255 / 0.18), transparent 80%)`,
         }}
       />
       <div className={cn("relative z-10", className)}>{children}</div>
@@ -57,7 +57,7 @@ export const Highlight = ({ children, className }: { children: React.ReactNode; 
       animate={{ backgroundSize: "100% 100%" }}
       transition={{ duration: 1.2, ease: "easeInOut", delay: 0.4 }}
       style={{
-        backgroundImage: "linear-gradient(120deg, oklch(0.62 0.21 295 / 0.25), oklch(0.45 0.22 295 / 0.25))",
+        backgroundImage: "linear-gradient(120deg, oklch(0.62 0.18 255 / 0.28), oklch(0.93 0.04 25 / 0.5))",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "left center",
         display: "inline",
