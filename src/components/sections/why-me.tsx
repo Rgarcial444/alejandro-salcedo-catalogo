@@ -57,8 +57,7 @@ export function WhyMe() {
   return (
     <section
       id="beneficios"
-      className="light bg-[oklch(0.985_0.004_250)] text-[oklch(0.21_0.03_250)] py-20 sm:py-28"
-      style={{ colorScheme: "light" }}
+      className="force-light py-20 sm:py-28"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
