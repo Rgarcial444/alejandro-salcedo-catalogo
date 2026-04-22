@@ -73,22 +73,21 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
         className={cn(cardVariants({ gradient }), className)}
         {...props}
       >
-        {/* Decorative background image with animation */}
+{/* Decorative background image with animation */}
         {imageUrl && (
           <motion.div
             variants={imageAnimation}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             aria-hidden
-            className="pointer-events-none absolute -right-4 -bottom-4 sm:-right-6 sm:-bottom-6 h-32 w-32 sm:h-40 sm:w-40 rounded-full overflow-hidden opacity-80 mix-blend-multiply z-0"
+            className="pointer-events-none absolute -right-4 -bottom-4 sm:-right-6 sm:-bottom-6 h-32 w-32 sm:h-40 sm:w-40 rounded-full overflow-hidden opacity-50 z-0"
           >
             <img
               src={imageUrl}
               alt=""
               className="h-full w-full object-cover"
               loading="lazy"
-              draggable={false}
+              draggable="false"
             />
-            <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-transparent to-white/40" />
           </motion.div>
         )}
 
@@ -106,6 +105,9 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
 
         {/* Card content */}
         <div className="relative z-10 flex flex-col h-full">
+          {/* Subtle overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-white/40 to-transparent rounded-2xl pointer-events-none" />
+          
           {/* Badge */}
           <div className="inline-flex items-center self-start gap-1.5 rounded-full bg-white/70 backdrop-blur px-2.5 py-1 text-[11px] font-medium text-slate-700 border border-white/60">
             <span
@@ -125,10 +127,10 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
 
           {/* Title and description */}
           <div className="mt-4 flex-1 min-h-0">
-            <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-slate-900 line-clamp-2">
+            <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-slate-900">
               {title}
             </h3>
-            <p className="mt-2 text-sm text-slate-700/85 leading-relaxed line-clamp-4">
+            <p className="mt-2 text-sm text-slate-800 leading-relaxed">
               {description}
             </p>
           </div>
