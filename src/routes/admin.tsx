@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Pencil, Plus, RotateCcw, Trash2, X, Save } from "lucide-react";
 import { formatMXN } from "@/lib/contact";
+import { ImageUploader } from "@/components/admin/image-uploader";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -30,7 +31,7 @@ const empty = (): Vehicle => ({
   fuel: "Gasolina",
   transmission: "Automática",
   featured: false,
-  images: [""],
+  images: [],
   description: "",
   specs: [
     { label: "Motor", value: "" },
@@ -62,11 +63,11 @@ function AdminPage() {
     const cleaned: Vehicle = {
       ...editing,
       id,
-      images: editing.images.map((i) => i.trim()).filter(Boolean),
+      images: editing.images.filter(Boolean),
       specs: editing.specs.filter((s) => s.label.trim() && s.value.trim()),
     };
     if (!cleaned.brand || !cleaned.model || cleaned.images.length === 0) {
-      alert("Marca, modelo y al menos una imagen son obligatorios.");
+      alert("Marca, modelo y al menos una foto son obligatorios.");
       return;
     }
     upsert(cleaned);
