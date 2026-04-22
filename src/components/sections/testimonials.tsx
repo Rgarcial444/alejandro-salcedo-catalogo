@@ -15,7 +15,7 @@ const testimonials = [
     car: "Toyota Corolla Híbrido 2021",
     quote:
       "Me sentía perdida buscando auto y Alejandro me guió en todo momento. Respondió mis dudas rápidamente y el proceso de compra fue muy transparente.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
   },
   {
     name: "Miguel Torres",
@@ -29,7 +29,7 @@ const testimonials = [
     car: "Honda CR-V 2022",
     quote:
       "Segunda vez que compro con Alejandro. Su atención es consistente y siempre busca lo mejor para sus clientes. Es mi asesor de confianza.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80",
+    image: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?auto=format&fit=crop&w=200&q=80",
   },
   {
     name: "Jorge Herrera",
@@ -43,13 +43,13 @@ const testimonials = [
     car: "BMW Serie 3 2022",
     quote:
       "Proceso muy fluido y sin complicaciones. Alejandro se encargó de todo el papeleo y apenas tuve que ir a la entrega. Repetiría sin pensarlo.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
   },
   {
     name: "Eduardo Campos",
     car: "Mazda CX-5 2022",
     quote:
-      "Alejandro es honesto y no te push a comprar. Me dio opciones reales dentro de mi presupuesto y el auto quedó exactamente como lo wanted.",
+      "Alejandro es honesto y no te push a comprar. Me dio opciones reales dentro de mi presupuesto y el auto quedó exactamente como lo quería.",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80",
   },
   {
@@ -57,7 +57,35 @@ const testimonials = [
     car: "Toyota Corolla Híbrido 2021",
     quote:
       "Mi primer auto y Alejandro hizo que fuera una experiencia increíble. Explicó todo super claro y ahora tengo mi auto soñado. ¡100% recomendada!",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80",
+  },
+  {
+    name: "Carlos Mendoza",
+    car: "Audi A4 2022",
+    quote:
+      "Un amigo me recomendo a Alejandro y no me'arrepenti. Me consiguió un precio increíble y el auto estava en condiciones optimas. Excelente servicio.",
+    image: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&w=200&q=80",
+  },
+  {
+    name: "Ana Gabriela Jiménez",
+    car: "Honda Civic 2023",
+    quote:
+      " estaba buscando un auto seguro para mi familia y Alejandro me encontró el perfecto. Su atención personalizada me hizo sentir muy confiada.",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80",
+  },
+  {
+    name: "Ricardo García",
+    car: "Nissan Sentra 2021",
+    quote:
+      "Muy profesionales desde el inicio. El auto que me vendió estaba en perfecto estado y me incluyó garantía. total'mente satisfecho.",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80",
+  },
+  {
+    name: "María Elena Torres",
+    car: "Ford Explorer 2022",
+    quote:
+      "Mi esposo y nosotros buscabamos un SUV grande y Alejandro nos orientó perfectamente. El financiamiento fue rapido y sin complicaciones.",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=200&q=80",
   },
 ];
 

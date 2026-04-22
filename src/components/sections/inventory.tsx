@@ -96,7 +96,13 @@ export function Inventory() {
         </div>
 
         {/* Filters - expandable */}
-        <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-card border border-border">
+        <div
+          className="mt-8 p-4 sm:p-5 rounded-2xl bg-card border border-border"
+          style={{
+            background: "linear-gradient(#fff, #fff) padding-box, linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899, #f97316) border-box",
+            border: "2px solid transparent",
+          }}
+        >
           <button
             onClick={() => setShowFilters(!showFilters)}
             className="flex items-center justify-between w-full"
