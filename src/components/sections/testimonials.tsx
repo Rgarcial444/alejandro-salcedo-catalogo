@@ -48,7 +48,7 @@ export function Testimonials() {
                   <Star key={k} className="h-4 w-4 fill-foreground text-foreground" />
                 ))}
               </div>
-              <p className="mt-4 text-foreground/90 leading-relaxed">"{t.quote}"</p>
+              <p className="mt-4 text-foreground/90 leading-relaxed line-clamp-4">{t.quote}</p>
               <div className="mt-6 flex items-center gap-3 pt-5 border-t border-border">
                 <img src={t.photo} alt={t.name} className="h-11 w-11 rounded-full object-cover" />
                 <div>

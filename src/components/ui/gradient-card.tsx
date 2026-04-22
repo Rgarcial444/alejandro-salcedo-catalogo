@@ -81,7 +81,7 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
             variants={imageAnimation}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             aria-hidden
-            className="pointer-events-none absolute -right-8 -bottom-8 sm:-right-10 sm:-bottom-10 h-44 w-44 sm:h-52 sm:w-52 rounded-full overflow-hidden opacity-90 mix-blend-multiply"
+            className="pointer-events-none absolute -right-4 -bottom-4 sm:-right-6 sm:-bottom-6 h-32 w-32 sm:h-40 sm:w-40 rounded-full overflow-hidden opacity-80 mix-blend-multiply z-0"
           >
             <img
               src={imageUrl}
@@ -126,11 +126,11 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
           )}
 
           {/* Title and description */}
-          <div className="mt-4 flex-1 max-w-[78%]">
-            <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-slate-900">
+          <div className="mt-4 flex-1 min-h-0">
+            <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-slate-900 line-clamp-2">
               {title}
             </h3>
-            <p className="mt-2 text-sm text-slate-700/85 leading-relaxed">
+            <p className="mt-2 text-sm text-slate-700/85 leading-relaxed line-clamp-4">
               {description}
             </p>
           </div>
