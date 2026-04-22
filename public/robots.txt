@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alejandrosalcedo.mx/sitemap.xml
+Sitemap: https://salcedoalejandro058@gmail.com/sitemap.xml
 
 User-agent: *
 Disallow: /admin

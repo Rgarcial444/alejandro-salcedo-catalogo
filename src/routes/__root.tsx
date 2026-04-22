@@ -57,9 +57,10 @@ export const Route = createRootRoute({
           "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ac11b722-1542-48d2-b594-469c43a32558",
       },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ac11b722-1542-48d2-b594-469c43a32558" },
-      { tagName: "link", rel: "canonical", href: "https://alejandrosalcedo.mx/" },
+      { tagName: "link", rel: "canonical", href: "https://salcedoalejandro058@gmail.com/" },
     ],
     links: [
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       {
         rel: "stylesheet",
         href: appCss,
