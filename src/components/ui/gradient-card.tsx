@@ -25,7 +25,7 @@ const cardVariants = cva(
 );
 
 export interface GradientCardProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends Omit<HTMLMotionProps<"div">, "title">,
     VariantProps<typeof cardVariants> {
   badgeText: string;
   badgeColor: string;
