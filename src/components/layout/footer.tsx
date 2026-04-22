@@ -1,4 +1,5 @@
-import { Instagram, Facebook, MessageCircle, Phone, Mail, ArrowRight, MessageSquare } from "lucide-react";
+import { Instagram, Facebook, MessageCircle, Phone, Mail, ArrowRight, MessageSquare, Settings } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { PHONE, PHONE_TEL, waLink } from "@/lib/contact";
 
 export function Footer() {
@@ -68,7 +69,12 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row justify-between gap-2 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} Alejandro Salcedo. Todos los derechos reservados.</p>
-          <p>Asesor automotriz independiente · Ciudad de México</p>
+          <div className="flex items-center gap-4">
+            <p>Asesor automotriz independiente · Ciudad de México</p>
+            <Link to="/login" className="hover:text-foreground transition flex items-center gap-1">
+              <Settings className="h-3 w-3" /> Admin
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

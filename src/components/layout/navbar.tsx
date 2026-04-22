@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { PHONE, PHONE_TEL, waLink } from "@/lib/contact";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { useAuth } from "@/contexts/auth-context";
 
 const links = [
   { href: "#inventario", label: "Inventario" },
@@ -16,6 +17,7 @@ const links = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { isAllowed } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -63,7 +65,11 @@ export function Navbar() {
             <Button variant="hero" size="sm">Contactar</Button>
           </a>
           <ThemeToggle />
-          <Link to="/admin" className="text-xs text-muted-foreground hover:text-foreground ml-1" title="Panel">Admin</Link>
+          {isAllowed ? (
+            <Link to="/admin" className="text-xs text-muted-foreground hover:text-foreground ml-1" title="Panel">Admin</Link>
+          ) : (
+            <Link to="/login" className="text-xs text-muted-foreground hover:text-foreground ml-1" title="Login">Login</Link>
+          )}
         </div>
 
         <div className="md:hidden flex items-center gap-1">
