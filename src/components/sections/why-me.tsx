@@ -55,12 +55,16 @@ const benefits = [
 
 export function WhyMe() {
   return (
-    <section id="beneficios" className="py-20 sm:py-28 bg-secondary/40">
+    <section
+      id="beneficios"
+      className="light bg-[oklch(0.985_0.004_250)] text-[oklch(0.21_0.03_250)] py-20 sm:py-28"
+      style={{ colorScheme: "light" }}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
-          <p className="text-sm font-medium text-primary">Por qué elegirme</p>
+          <p className="text-sm font-medium text-primary">¿Por qué elegirme?</p>
           <h2 className="mt-2 text-3xl sm:text-4xl font-semibold tracking-tight">
-            Una experiencia de compra realmente diferente
+            ¿Una experiencia de compra realmente diferente?
           </h2>
           <p className="mt-3 text-muted-foreground">
             Como asesor independiente, mi prioridad es que encuentres el auto correcto, no cerrar una venta.
