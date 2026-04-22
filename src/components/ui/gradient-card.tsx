@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { motion, type HTMLMotionProps } from "framer-motion";
-import { ArrowRight, type LucideIcon } from "lucide-react";
+import { type LucideIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -46,8 +46,6 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
       badgeColor,
       title,
       description,
-      ctaText,
-      ctaHref,
       icon: Icon,
       imageUrl,
       ...props
@@ -134,17 +132,6 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
               {description}
             </p>
           </div>
-
-          {/* CTA */}
-          {ctaText && (
-            <a
-              href={ctaHref ?? "#"}
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-slate-900 hover:gap-2.5 transition-all duration-300"
-            >
-              {ctaText}
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          )}
         </div>
       </motion.div>
     );
