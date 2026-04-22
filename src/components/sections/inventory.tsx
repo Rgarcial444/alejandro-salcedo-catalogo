@@ -1,11 +1,12 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Filter, Search, X } from "lucide-react";
-import { brands, fuels, transmissions, vehicles, Vehicle } from "@/data/vehicles";
+import { brands, fuels, transmissions } from "@/data/vehicles";
+import { useVehicles } from "@/hooks/use-vehicles";
 import { InventoryCard } from "@/components/inventory/inventory-card";
-import { VehicleDialog } from "@/components/inventory/vehicle-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useNavigate } from "@tanstack/react-router";
 
 const priceRanges = [
   { label: "Todos los precios", min: 0, max: Infinity },
@@ -15,12 +16,13 @@ const priceRanges = [
 ];
 
 export function Inventory() {
+  const { vehicles } = useVehicles();
+  const navigate = useNavigate();
   const [brand, setBrand] = useState("Todas");
   const [fuel, setFuel] = useState("Todos");
   const [trans, setTrans] = useState("Todas");
   const [priceIdx, setPriceIdx] = useState(0);
   const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState<Vehicle | null>(null);
 
   const filtered = useMemo(() => {
     const range = priceRanges[priceIdx];
@@ -32,7 +34,7 @@ export function Inventory() {
       if (query && !`${v.brand} ${v.model}`.toLowerCase().includes(query.toLowerCase())) return false;
       return true;
     });
-  }, [brand, fuel, trans, priceIdx, query]);
+  }, [vehicles, brand, fuel, trans, priceIdx, query]);
 
   const reset = () => {
     setBrand("Todas"); setFuel("Todos"); setTrans("Todas"); setPriceIdx(0); setQuery("");
@@ -132,14 +134,12 @@ export function Inventory() {
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               {filtered.map((v) => (
-                <InventoryCard key={v.id} v={v} onClick={() => setSelected(v)} />
+                <InventoryCard key={v.id} v={v} onClick={() => navigate({ to: "/auto/$id", params: { id: v.id } })} />
               ))}
             </motion.div>
           )}
         </div>
       </div>
-
-      <VehicleDialog vehicle={selected} onOpenChange={(o) => !o && setSelected(null)} />
     </section>
   );
 }
