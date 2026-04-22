@@ -54,7 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await supabase.auth.signOut();
   };
 
-  const isAllowed = user?.email?.toLowerCase() === ALLOWED_EMAIL.toLowerCase() ?? false;
+  const isAllowed = user?.email?.toLowerCase() === ALLOWED_EMAIL.toLowerCase() || false;
 
   return (
     <AuthContext.Provider value={{ user, loading, signIn, signOut, isAllowed }}>

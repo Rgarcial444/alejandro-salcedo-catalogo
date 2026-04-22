@@ -54,15 +54,13 @@ function DefaultErrorComponent({ error, reset }: { error: Error; reset: () => vo
   );
 }
 
-export const getRouter = () => {
-  const router = createRouter({
-    routeTree,
-    context: {},
-    scrollRestoration: true,
-    defaultPreload: "intent",
-    defaultPreloadStaleTime: 30000,
-    defaultErrorComponent: DefaultErrorComponent,
-  });
+export const router = createRouter({
+  routeTree,
+  context: {},
+  scrollRestoration: true,
+  defaultPreload: "intent",
+  defaultPreloadStaleTime: 30000,
+  defaultErrorComponent: DefaultErrorComponent,
+});
 
-  return router;
-};
+export const getRouter = () => router;
