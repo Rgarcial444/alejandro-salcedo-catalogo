@@ -14,25 +14,24 @@ export const HeroHighlight = ({
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const handleMouseMove = useCallback(({ currentTarget, clientX, clientY }: React.MouseEvent<HTMLDivElement>) => {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }, [mouseX, mouseY]);
+  const handleMouseMove = useCallback(
+    ({ currentTarget, clientX, clientY }: React.MouseEvent<HTMLDivElement>) => {
+      const { left, top } = currentTarget.getBoundingClientRect();
+      mouseX.set(clientX - left);
+      mouseY.set(clientY - top);
+    },
+    [mouseX, mouseY],
+  );
 
   return (
     <div
-      className={cn(
-        "relative bg-background w-full group overflow-hidden",
-        containerClassName,
-      )}
+      className={cn("relative bg-background w-full group overflow-hidden", containerClassName)}
       onMouseMove={handleMouseMove}
     >
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.35]"
         style={{
-          backgroundImage:
-            "radial-gradient(oklch(0.55 0.02 260 / 0.35) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(oklch(0.55 0.02 260 / 0.35) 1px, transparent 1px)",
           backgroundSize: "22px 22px",
         }}
       />
@@ -51,14 +50,21 @@ export const HeroHighlight = ({
   );
 };
 
-export const Highlight = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+export const Highlight = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
   return (
     <motion.span
       initial={{ backgroundSize: "0% 100%" }}
       animate={{ backgroundSize: "100% 100%" }}
       transition={{ duration: 1.2, ease: "easeInOut", delay: 0.4 }}
       style={{
-        backgroundImage: "linear-gradient(120deg, oklch(0.62 0.18 255 / 0.28), oklch(0.93 0.04 25 / 0.5))",
+        backgroundImage:
+          "linear-gradient(120deg, oklch(0.62 0.18 255 / 0.28), oklch(0.93 0.04 25 / 0.5))",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "left center",
         display: "inline",

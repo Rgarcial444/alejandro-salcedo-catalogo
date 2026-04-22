@@ -6,42 +6,50 @@ const testimonials = [
   {
     name: "Roberto Sánchez",
     car: "Mazda CX-5 2022",
-    quote: "Excelente atención desde el primer contacto. Alejandro me ayudó a encontrar elauto perfecto para mi familia. Totalmente recomiendo su servicio.",
+    quote:
+      "Excelente atención desde el primer contacto. Alejandro me ayudó a encontrar elauto perfecto para mi familia. Totalmente recomiendo su servicio.",
   },
   {
     name: "Laura Martínez",
     car: "Toyota Corolla Híbrido 2021",
-    quote: "Me sentía perdida buscando auto y Alejandro me guió en todo momento. Respondiómis dudas rápidamente y el proceso de compra fue muy transparente.",
+    quote:
+      "Me sentía perdida buscando auto y Alejandro me guió en todo momento. Respondiómis dudas rápidamente y el proceso de compra fue muy transparente.",
   },
   {
     name: "Miguel Torres",
     car: "Volkswagen Jetta GLI 2023",
-    quote: "Profesionalismo total. Me explicó cada detalle del auto y me ayudó a conseguir unbajón muy bueno. El auto llegó en perfectas condiciones.",
+    quote:
+      "Profesionalismo total. Me explicó cada detalle del auto y me ayudó a conseguir unbajón muy bueno. El auto llegó en perfectas condiciones.",
   },
   {
     name: "Patricia López",
     car: "Honda CR-V 2022",
-    quote: "Segunda vez que compro con Alejandro. Su atención es consistente y siempre busca lo mejorpara sus clientes. Es mi asesor de confianza.",
+    quote:
+      "Segunda vez que compro con Alejandro. Su atención es consistente y siempre busca lo mejorpara sus clientes. Es mi asesor de confianza.",
   },
   {
     name: "Jorge Herrera",
     car: "Tesla Model 3 2023",
-    quote: "Desde el primer mensaje sentí confianza. Me mantuvo informado en todo momento yel auto exceeded mis expectativas. ¡Gracias Alejandro!",
+    quote:
+      "Desde el primer mensaje sentí confianza. Me mantuvo informado en todo momento yel auto exceeded mis expectativas. ¡Gracias Alejandro!",
   },
   {
     name: "Sandra Ruiz",
     car: "BMW Serie 3 2022",
-    quote: "Proceso muy fluido y sin complicaciones. Alejandro se encargó de todo el papeleo yapenas tuve que ir a la entrega. Repetiría sin pensarlo.",
+    quote:
+      "Proceso muy fluido y sin complicaciones. Alejandro se encargó de todo el papeleo yapenas tuve que ir a la entrega. Repetiría sin pensarlo.",
   },
   {
     name: "Eduardo Campos",
     car: "Mazda CX-5 2022",
-    quote: "Alejandro es honesto y no te pushing a comprar. Me dio opciones reales dentro de mi presupuesto y el auto quedó exactamente como lo wanted.",
+    quote:
+      "Alejandro es honesto y no te pushing a comprar. Me dio opciones reales dentro de mi presupuesto y el auto quedó exactamente como lo wanted.",
   },
   {
     name: "Fernanda Aguirre",
     car: "Toyota Corolla Híbrido 2021",
-    quote: "Mi primer auto y Alejandro hizo que fuera una experiencia increíble. Explicó todo superclario y ahora tengo mi auto soñado. ¡100% recomendada!",
+    quote:
+      "Mi primer auto y Alejandro hizo que fuera una experiencia increíble. Explicó todo superclario y ahora tengo mi auto soñado. ¡100% recomendada!",
   },
 ];
 
@@ -110,7 +118,9 @@ export function Testimonials() {
                     <Star key={k} className="h-4 w-4 fill-foreground text-foreground" />
                   ))}
                 </div>
-                <p className="mt-4 text-foreground/90 leading-relaxed">{testimonials[current].quote}</p>
+                <p className="mt-4 text-foreground/90 leading-relaxed">
+                  {testimonials[current].quote}
+                </p>
                 <div className="mt-6 flex items-center gap-3 pt-5 border-t border-border">
                   <div className="h-11 w-11 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-semibold">
                     {testimonials[current].name.charAt(0)}

@@ -2,7 +2,15 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { Vehicle } from "@/data/vehicles";
 import { formatMXN, waLink } from "@/lib/contact";
 import { Button } from "@/components/ui/button";
-import { Calendar, Fuel, Gauge, MessageCircle, Settings2, ShieldCheck, Sparkles } from "lucide-react";
+import {
+  Calendar,
+  Fuel,
+  Gauge,
+  MessageCircle,
+  Settings2,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import { useState } from "react";
 
 export function VehicleDialog({
@@ -27,14 +35,22 @@ export function VehicleDialog({
       }}
     >
       <DialogContent className="max-w-5xl p-0 overflow-hidden bg-card max-h-[92vh] overflow-y-auto">
-        <DialogTitle className="sr-only">{v.brand} {v.model} {v.year}</DialogTitle>
+        <DialogTitle className="sr-only">
+          {v.brand} {v.model} {v.year}
+        </DialogTitle>
         <DialogDescription className="sr-only">{v.description}</DialogDescription>
 
         <div className="grid lg:grid-cols-2">
           {/* Gallery */}
           <div className="bg-muted">
             <div className="aspect-[4/3] lg:aspect-auto lg:h-[420px] overflow-hidden">
-              <img src={v.images[active]} alt={v.model} className="h-full w-full object-cover" loading="lazy" decoding="async" />
+              <img
+                src={v.images[active]}
+                alt={v.model}
+                className="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div className="p-4 flex gap-2 overflow-x-auto">
               {v.images.map((img, i) => (
@@ -42,10 +58,18 @@ export function VehicleDialog({
                   key={i}
                   onClick={() => setActive(i)}
                   className={`shrink-0 h-16 w-24 rounded-lg overflow-hidden border-2 transition ${
-                    active === i ? "border-foreground" : "border-transparent opacity-70 hover:opacity-100"
+                    active === i
+                      ? "border-foreground"
+                      : "border-transparent opacity-70 hover:opacity-100"
                   }`}
                 >
-                  <img src={img} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+                  <img
+                    src={img}
+                    alt=""
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </button>
               ))}
             </div>
@@ -54,7 +78,9 @@ export function VehicleDialog({
           {/* Details */}
           <div className="p-6 lg:p-8 flex flex-col">
             <div className="flex items-center gap-2">
-              <span className="text-xs text-muted-foreground uppercase tracking-wide">{v.brand}</span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wide">
+                {v.brand}
+              </span>
               {v.featured && (
                 <span className="inline-flex items-center gap-1 bg-foreground text-background text-[10px] font-medium px-2 py-0.5 rounded-full">
                   <Sparkles className="h-3 w-3" /> Destacado
@@ -72,7 +98,8 @@ export function VehicleDialog({
                 </span>
               </div>
               <p className="text-xs text-muted-foreground mt-1.5 flex items-center gap-1.5">
-                <ShieldCheck className="h-3.5 w-3.5 text-primary" /> Apoyo con financiamiento disponible
+                <ShieldCheck className="h-3.5 w-3.5 text-primary" /> Apoyo con financiamiento
+                disponible
               </p>
             </div>
 
@@ -98,7 +125,10 @@ export function VehicleDialog({
 
             <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
               {v.specs.map((s) => (
-                <div key={s.label} className="flex justify-between border-b border-border/60 py-1.5">
+                <div
+                  key={s.label}
+                  className="flex justify-between border-b border-border/60 py-1.5"
+                >
                   <span className="text-muted-foreground">{s.label}</span>
                   <span className="font-medium">{s.value}</span>
                 </div>

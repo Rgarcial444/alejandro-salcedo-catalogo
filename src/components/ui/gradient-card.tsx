@@ -25,8 +25,7 @@ const cardVariants = cva(
 );
 
 export interface GradientCardProps
-  extends Omit<HTMLMotionProps<"div">, "title">,
-    VariantProps<typeof cardVariants> {
+  extends Omit<HTMLMotionProps<"div">, "title">, VariantProps<typeof cardVariants> {
   badgeText: string;
   badgeColor: string;
   title: string;
@@ -73,7 +72,7 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
         className={cn(cardVariants({ gradient }), className)}
         {...props}
       >
-{/* Decorative background image with animation */}
+        {/* Decorative background image with animation */}
         {imageUrl && (
           <motion.div
             variants={imageAnimation}
@@ -107,7 +106,7 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
         <div className="relative z-10 flex flex-col h-full">
           {/* Subtle overlay to ensure text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-white/40 to-transparent rounded-2xl pointer-events-none" />
-          
+
           {/* Badge */}
           <div className="inline-flex items-center self-start gap-1.5 rounded-full bg-white/70 backdrop-blur px-2.5 py-1 text-[11px] font-medium text-slate-700 border border-white/60">
             <span
@@ -130,9 +129,7 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
             <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-slate-900">
               {title}
             </h3>
-            <p className="mt-2 text-sm text-slate-800 leading-relaxed">
-              {description}
-            </p>
+            <p className="mt-2 text-sm text-slate-800 leading-relaxed">{description}</p>
           </div>
         </div>
       </motion.div>

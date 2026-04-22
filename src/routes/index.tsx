@@ -24,7 +24,8 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:image",
-        content: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
+        content:
+          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
       },
     ],
   }),

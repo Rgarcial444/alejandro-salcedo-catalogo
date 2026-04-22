@@ -1,6 +1,10 @@
 import { useEffect, useState, useCallback, useSyncExternalStore } from "react";
 import { vehicles as seedVehicles, type Vehicle } from "@/data/vehicles";
-import { fetchVehiclesFromSupabase, saveVehicleToSupabase, deleteVehicleFromSupabase } from "@/lib/supabase-vehicles";
+import {
+  fetchVehiclesFromSupabase,
+  saveVehicleToSupabase,
+  deleteVehicleFromSupabase,
+} from "@/lib/supabase-vehicles";
 
 const KEY = "as.vehicles.v1";
 const SUPABASE_KEY = "as.supabase.loaded";
@@ -48,11 +52,11 @@ export function useVehicles() {
 
   useEffect(() => {
     setHydrated(true);
-    
+
     const loadFromSupabase = async () => {
       const alreadyLoaded = localStorage.getItem(SUPABASE_KEY);
       if (alreadyLoaded) return;
-      
+
       setLoading(true);
       try {
         const vehicles = await fetchVehiclesFromSupabase();
@@ -67,7 +71,7 @@ export function useVehicles() {
         setLoading(false);
       }
     };
-    
+
     loadFromSupabase();
   }, []);
 
@@ -115,7 +119,17 @@ export function useVehicles() {
     write(seedVehicles);
   }, []);
 
-  return { vehicles: list, brands, fuels, transmissions, upsert, remove, reset, loading, fromSupabase };
+  return {
+    vehicles: list,
+    brands,
+    fuels,
+    transmissions,
+    upsert,
+    remove,
+    reset,
+    loading,
+    fromSupabase,
+  };
 }
 
 export function getVehicleById(id: string): Vehicle | undefined {

@@ -1,5 +1,12 @@
 import { motion } from "framer-motion";
-import { CalendarCheck, HandCoins, Headphones, ShieldCheck, Sparkles, UserCheck } from "lucide-react";
+import {
+  CalendarCheck,
+  HandCoins,
+  Headphones,
+  ShieldCheck,
+  Sparkles,
+  UserCheck,
+} from "lucide-react";
 import { GradientCard } from "@/components/ui/gradient-card";
 
 const u = (id: string, w = 320) =>
@@ -64,10 +71,7 @@ const benefits = [
 
 export function WhyMe() {
   return (
-    <section
-      id="beneficios"
-      className="force-light py-20 sm:py-28"
-    >
+    <section id="beneficios" className="force-light py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <p className="text-sm font-medium text-primary">¿Por qué elegirme?</p>
@@ -75,7 +79,8 @@ export function WhyMe() {
             ¿Una experiencia de compra realmente diferente?
           </h2>
           <p className="mt-3 text-muted-foreground">
-            Como asesor independiente, mi prioridad es que encuentres el auto correcto, no cerrar una venta.
+            Como asesor independiente, mi prioridad es que encuentres el auto correcto, no cerrar
+            una venta.
           </p>
         </div>
 

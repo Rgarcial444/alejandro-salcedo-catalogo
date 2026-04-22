@@ -1,4 +1,13 @@
-import { Instagram, Facebook, MessageCircle, Phone, Mail, ArrowRight, MessageSquare, Settings } from "lucide-react";
+import {
+  Instagram,
+  Facebook,
+  MessageCircle,
+  Phone,
+  Mail,
+  ArrowRight,
+  MessageSquare,
+  Settings,
+} from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { PHONE, PHONE_TEL, waLink } from "@/lib/contact";
 
@@ -14,8 +23,8 @@ export function Footer() {
             Alejandro Salcedo
           </div>
           <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-            Asesor automotriz independiente. Te ayudo a encontrar el auto correcto, con
-            inventario verificado, atención personalizada y apoyo en cada paso del proceso.
+            Asesor automotriz independiente. Te ayudo a encontrar el auto correcto, con inventario
+            verificado, atención personalizada y apoyo en cada paso del proceso.
           </p>
           <a
             href={waLink("Hola Alejandro, me interesa información.")}
@@ -32,19 +41,45 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold mb-4">Enlaces</h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
-            <li><a href="#inventario" className="hover:text-foreground transition">Inventario</a></li>
-            <li><a href="#beneficios" className="hover:text-foreground transition">¿Por qué elegirme?</a></li>
-            <li><a href="#testimonios" className="hover:text-foreground transition">Testimonios</a></li>
-            <li><a href="#contacto" className="hover:text-foreground transition">Contacto</a></li>
+            <li>
+              <a href="#inventario" className="hover:text-foreground transition">
+                Inventario
+              </a>
+            </li>
+            <li>
+              <a href="#beneficios" className="hover:text-foreground transition">
+                ¿Por qué elegirme?
+              </a>
+            </li>
+            <li>
+              <a href="#testimonios" className="hover:text-foreground transition">
+                Testimonios
+              </a>
+            </li>
+            <li>
+              <a href="#contacto" className="hover:text-foreground transition">
+                Contacto
+              </a>
+            </li>
           </ul>
         </div>
 
         <div>
           <h4 className="text-sm font-semibold mb-4">Contacto</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
-            <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> <a href={`tel:${PHONE_TEL}`}>{PHONE}</a></li>
-            <li className="flex items-center gap-2"><MessageCircle className="h-4 w-4" /> <a href={waLink("Hola Alejandro")} target="_blank" rel="noreferrer">WhatsApp</a></li>
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4" /><span>alejandrosalcedo.asesor@gmail.com</span></li>
+            <li className="flex items-center gap-2">
+              <Phone className="h-4 w-4" /> <a href={`tel:${PHONE_TEL}`}>{PHONE}</a>
+            </li>
+            <li className="flex items-center gap-2">
+              <MessageCircle className="h-4 w-4" />{" "}
+              <a href={waLink("Hola Alejandro")} target="_blank" rel="noreferrer">
+                WhatsApp
+              </a>
+            </li>
+            <li className="flex items-center gap-2">
+              <Mail className="h-4 w-4" />
+              <span>alejandrosalcedo.asesor@gmail.com</span>
+            </li>
           </ul>
           <div className="mt-5 flex gap-3">
             <a

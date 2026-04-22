@@ -22,7 +22,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
 
@@ -31,11 +33,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signIn = async (email: string): Promise<{ error: string | null }> => {
     const normalizedEmail = email.toLowerCase().trim();
-    
+
     const isEmailAllowed = ALLOWED_EMAILS.some(
-      allowed => allowed.toLowerCase() === normalizedEmail
+      (allowed) => allowed.toLowerCase() === normalizedEmail,
     );
-    
+
     if (!isEmailAllowed) {
       return { error: "Correo no autorizado" };
     }
@@ -59,7 +61,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const userEmail = user?.email?.toLowerCase() ?? "";
-  const isAllowed = ALLOWED_EMAILS.some(email => email.toLowerCase() === userEmail);
+  const isAllowed = ALLOWED_EMAILS.some((email) => email.toLowerCase() === userEmail);
 
   return (
     <AuthContext.Provider value={{ user, loading, signIn, signOut, isAllowed }}>

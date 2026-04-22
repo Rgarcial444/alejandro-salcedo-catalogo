@@ -3,7 +3,10 @@ import { cn } from "@/lib/utils";
 
 export const PulseBeam = ({ className }: { className?: string }) => {
   return (
-    <span aria-hidden className={cn("pointer-events-none absolute inset-0 rounded-full", className)}>
+    <span
+      aria-hidden
+      className={cn("pointer-events-none absolute inset-0 rounded-full", className)}
+    >
       <motion.span
         className="absolute inset-0 rounded-full bg-primary/30"
         animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}

@@ -30,7 +30,7 @@ function LoginPage() {
     setLoading(true);
 
     const result = await signIn(email);
-    
+
     if (result.error) {
       setError(result.error);
       setLoading(false);
@@ -95,9 +95,7 @@ function LoginPage() {
           </div>
 
           {error && (
-            <div className="text-sm text-destructive bg-destructive/10 p-3 rounded-md">
-              {error}
-            </div>
+            <div className="text-sm text-destructive bg-destructive/10 p-3 rounded-md">{error}</div>
           )}
 
           <Button type="submit" className="w-full" disabled={loading}>

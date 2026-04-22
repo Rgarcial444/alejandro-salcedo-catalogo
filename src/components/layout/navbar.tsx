@@ -30,9 +30,7 @@ export function Navbar() {
     <header
       className={cn(
         "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/60"
-          : "bg-transparent",
+        scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border/60" : "bg-transparent",
       )}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -45,11 +43,7 @@ export function Navbar() {
 
         <nav className="hidden md:flex items-center gap-7 text-sm text-muted-foreground">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={`/${l.href}`}
-              className="hover:text-foreground transition-colors"
-            >
+            <a key={l.href} href={`/${l.href}`} className="hover:text-foreground transition-colors">
               {l.label}
             </a>
           ))}
@@ -61,14 +55,32 @@ export function Navbar() {
               <Phone className="h-4 w-4" /> {PHONE}
             </Button>
           </a>
-          <a href={waLink("Hola Alejandro, vi tu sitio y me interesa información.")} target="_blank" rel="noreferrer">
-            <Button variant="hero" size="sm">Contactar</Button>
+          <a
+            href={waLink("Hola Alejandro, vi tu sitio y me interesa información.")}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Button variant="hero" size="sm">
+              Contactar
+            </Button>
           </a>
           <ThemeToggle />
           {isAllowed ? (
-            <Link to="/admin" className="text-xs text-muted-foreground hover:text-foreground ml-1" title="Panel">Admin</Link>
+            <Link
+              to="/admin"
+              className="text-xs text-muted-foreground hover:text-foreground ml-1"
+              title="Panel"
+            >
+              Admin
+            </Link>
           ) : (
-            <Link to="/login" className="text-xs text-muted-foreground hover:text-foreground ml-1" title="Login">Login</Link>
+            <Link
+              to="/login"
+              className="text-xs text-muted-foreground hover:text-foreground ml-1"
+              title="Login"
+            >
+              Login
+            </Link>
           )}
         </div>
 
@@ -94,7 +106,9 @@ export function Navbar() {
               </a>
             ))}
             <a href={waLink("Hola Alejandro, vi tu sitio.")} target="_blank" rel="noreferrer">
-              <Button variant="hero" className="w-full">Contactar</Button>
+              <Button variant="hero" className="w-full">
+                Contactar
+              </Button>
             </a>
           </div>
         </div>

@@ -67,7 +67,10 @@ export function ImageUploader({ images, onChange }: Props) {
     <div className="space-y-3">
       {/* Dropzone */}
       <div
-        onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDragOver(true);
+        }}
         onDragLeave={() => setDragOver(false)}
         onDrop={(e) => {
           e.preventDefault();
@@ -82,7 +85,10 @@ export function ImageUploader({ images, onChange }: Props) {
       >
         <Upload className="h-6 w-6 mx-auto text-muted-foreground" />
         <p className="mt-2 text-sm font-medium">
-          Arrastra fotos aquí o <span className="text-primary underline-offset-4 underline">elige desde tu dispositivo</span>
+          Arrastra fotos aquí o{" "}
+          <span className="text-primary underline-offset-4 underline">
+            elige desde tu dispositivo
+          </span>
         </p>
         <p className="mt-1 text-xs text-muted-foreground">
           JPG, PNG o WEBP · hasta 4 MB cada una. La primera será la portada.
@@ -111,8 +117,14 @@ export function ImageUploader({ images, onChange }: Props) {
               key={i}
               draggable
               onDragStart={() => setDragIndex(i)}
-              onDragOver={(e) => { e.preventDefault(); setOverIndex(i); }}
-              onDragEnd={() => { setDragIndex(null); setOverIndex(null); }}
+              onDragOver={(e) => {
+                e.preventDefault();
+                setOverIndex(i);
+              }}
+              onDragEnd={() => {
+                setDragIndex(null);
+                setOverIndex(null);
+              }}
               onDrop={(e) => {
                 e.preventDefault();
                 if (dragIndex !== null) reorder(dragIndex, i);
@@ -126,7 +138,12 @@ export function ImageUploader({ images, onChange }: Props) {
               )}
             >
               <div className="aspect-[4/3] bg-muted">
-                <img src={src} alt={`Foto ${i + 1}`} className="h-full w-full object-cover" draggable={false} />
+                <img
+                  src={src}
+                  alt={`Foto ${i + 1}`}
+                  className="h-full w-full object-cover"
+                  draggable={false}
+                />
               </div>
 
               {i === 0 && (

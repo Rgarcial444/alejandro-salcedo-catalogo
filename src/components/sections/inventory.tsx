@@ -35,16 +35,30 @@ export function Inventory() {
       if (trans !== "Todas" && v.transmission !== trans) return false;
       if (condition !== "Todos" && v.condition !== condition) return false;
       if (v.price < range.min || v.price > range.max) return false;
-      if (query && !`${v.brand} ${v.model}`.toLowerCase().includes(query.toLowerCase())) return false;
+      if (query && !`${v.brand} ${v.model}`.toLowerCase().includes(query.toLowerCase()))
+        return false;
       return true;
     });
   }, [vehicles, brand, fuel, trans, condition, priceIdx, query]);
 
   const reset = () => {
-    setBrand("Todas"); setFuel("Todos"); setTrans("Todas"); setPriceIdx(0); setQuery(""); setCondition("Todos");
+    setBrand("Todas");
+    setFuel("Todos");
+    setTrans("Todas");
+    setPriceIdx(0);
+    setQuery("");
+    setCondition("Todos");
   };
 
-  const Chip = ({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) => (
+  const Chip = ({
+    label,
+    active,
+    onClick,
+  }: {
+    label: string;
+    active: boolean;
+    onClick: () => void;
+  }) => (
     <button
       onClick={onClick}
       className={`px-3.5 py-1.5 rounded-full text-xs font-medium border transition ${
@@ -83,16 +97,23 @@ export function Inventory() {
 
         {/* Filters - expandable */}
         <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-card border border-border">
-          <button 
+          <button
             onClick={() => setShowFilters(!showFilters)}
             className="flex items-center justify-between w-full"
           >
             <div className="flex items-center gap-2 text-sm font-medium">
               <Filter className="h-4 w-4" /> Filtros
-              {showFilters ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+              {showFilters ? (
+                <ChevronUp className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
+              )}
             </div>
-            <button 
-              onClick={(e) => { e.stopPropagation(); reset(); }} 
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                reset();
+              }}
               className="text-xs text-muted-foreground hover:text-foreground inline-flex items-center gap-1"
             >
               <X className="h-3 w-3" /> Limpiar
@@ -111,38 +132,90 @@ export function Inventory() {
                 <div className="space-y-3 pt-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Condición</p>
+                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">
+                        Condición
+                      </p>
                       <div className="flex flex-wrap gap-2">
-                        {conditions.map((c) => <Chip key={c} label={c} active={condition === c} onClick={() => setCondition(c)} />)}
+                        {conditions.map((c) => (
+                          <Chip
+                            key={c}
+                            label={c}
+                            active={condition === c}
+                            onClick={() => setCondition(c)}
+                          />
+                        ))}
                       </div>
                     </div>
                     <div>
-                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Marca</p>
+                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">
+                        Marca
+                      </p>
                       <div className="flex flex-wrap gap-2">
-                        <Chip label="Todas" active={brand === "Todas"} onClick={() => setBrand("Todas")} />
-                        {brands.map((b) => <Chip key={b} label={b} active={brand === b} onClick={() => setBrand(b)} />)}
+                        <Chip
+                          label="Todas"
+                          active={brand === "Todas"}
+                          onClick={() => setBrand("Todas")}
+                        />
+                        {brands.map((b) => (
+                          <Chip
+                            key={b}
+                            label={b}
+                            active={brand === b}
+                            onClick={() => setBrand(b)}
+                          />
+                        ))}
                       </div>
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
                     <div>
-                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Precio</p>
+                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">
+                        Precio
+                      </p>
                       <div className="flex flex-wrap gap-2">
-                        {priceRanges.map((p, i) => <Chip key={p.label} label={p.label} active={priceIdx === i} onClick={() => setPriceIdx(i)} />)}
+                        {priceRanges.map((p, i) => (
+                          <Chip
+                            key={p.label}
+                            label={p.label}
+                            active={priceIdx === i}
+                            onClick={() => setPriceIdx(i)}
+                          />
+                        ))}
                       </div>
                     </div>
                     <div>
-                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Combustible</p>
+                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">
+                        Combustible
+                      </p>
                       <div className="flex flex-wrap gap-2">
-                        <Chip label="Todos" active={fuel === "Todos"} onClick={() => setFuel("Todos")} />
-                        {fuels.map((f) => <Chip key={f} label={f} active={fuel === f} onClick={() => setFuel(f)} />)}
+                        <Chip
+                          label="Todos"
+                          active={fuel === "Todos"}
+                          onClick={() => setFuel("Todos")}
+                        />
+                        {fuels.map((f) => (
+                          <Chip key={f} label={f} active={fuel === f} onClick={() => setFuel(f)} />
+                        ))}
                       </div>
                     </div>
                     <div>
-                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Transmisión</p>
+                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">
+                        Transmisión
+                      </p>
                       <div className="flex flex-wrap gap-2">
-                        <Chip label="Todas" active={trans === "Todas"} onClick={() => setTrans("Todas")} />
-                        {transmissions.map((t) => <Chip key={t} label={t} active={trans === t} onClick={() => setTrans(t)} />)}
+                        <Chip
+                          label="Todas"
+                          active={trans === "Todas"}
+                          onClick={() => setTrans("Todas")}
+                        />
+                        {transmissions.map((t) => (
+                          <Chip
+                            key={t}
+                            label={t}
+                            active={trans === t}
+                            onClick={() => setTrans(t)}
+                          />
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -157,15 +230,18 @@ export function Inventory() {
           {filtered.length === 0 ? (
             <div className="text-center py-20 text-muted-foreground">
               <p>No encontramos vehículos con esos filtros.</p>
-              <Button variant="outline" className="mt-4" onClick={reset}>Limpiar filtros</Button>
+              <Button variant="outline" className="mt-4" onClick={reset}>
+                Limpiar filtros
+              </Button>
             </div>
           ) : (
-            <motion.div
-              layout
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
+            <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filtered.map((v) => (
-                <InventoryCard key={v.id} v={v} onClick={() => navigate({ to: "/auto/$id", params: { id: v.id } })} />
+                <InventoryCard
+                  key={v.id}
+                  v={v}
+                  onClick={() => navigate({ to: "/auto/$id", params: { id: v.id } })}
+                />
               ))}
             </motion.div>
           )}

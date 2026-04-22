@@ -1,7 +1,16 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Fuel, Gauge, MessageCircle, Settings2, ShieldCheck, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Fuel,
+  Gauge,
+  MessageCircle,
+  Settings2,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import { vehicles as seedVehicles, type Vehicle } from "@/data/vehicles";
 import { getVehicleById } from "@/hooks/use-vehicles";
 import { formatMXN, waLink } from "@/lib/contact";
@@ -36,7 +45,9 @@ export const Route = createFileRoute("/auto/$id")({
       <div>
         <h1 className="text-3xl font-semibold">Auto no encontrado</h1>
         <p className="text-muted-foreground mt-2">Es posible que ya no esté disponible.</p>
-        <Link to="/" className="inline-block mt-6"><Button variant="hero">Ver inventario</Button></Link>
+        <Link to="/" className="inline-block mt-6">
+          <Button variant="hero">Ver inventario</Button>
+        </Link>
       </div>
     </div>
   ),
@@ -67,7 +78,8 @@ function AutoPage() {
         to="/"
         className="fixed bottom-6 left-6 z-50 flex items-center gap-2 px-4 py-3 rounded-full shadow-lg transition"
         style={{
-          background: "linear-gradient(#fff, #fff) padding-box, linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899, #f97316) border-box",
+          background:
+            "linear-gradient(#fff, #fff) padding-box, linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899, #f97316) border-box",
           border: "2px solid transparent",
         }}
       >
@@ -77,7 +89,10 @@ function AutoPage() {
 
       <main className="pt-24 pb-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+          >
             <ArrowLeft className="h-4 w-4" /> Volver al inventario
           </Link>
         </div>
@@ -135,7 +150,9 @@ function AutoPage() {
                       key={i}
                       onClick={() => setActive(i)}
                       className={`shrink-0 h-16 w-24 rounded-lg overflow-hidden border-2 transition ${
-                        active === i ? "border-foreground" : "border-transparent opacity-70 hover:opacity-100"
+                        active === i
+                          ? "border-foreground"
+                          : "border-transparent opacity-70 hover:opacity-100"
                       }`}
                     >
                       <img src={img} alt="" className="h-full w-full object-cover" />
@@ -155,14 +172,19 @@ function AutoPage() {
               <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 lg:p-10 shadow-[var(--shadow-card)]">
                 <h1 className="font-semibold tracking-tight leading-[0.95] text-4xl sm:text-5xl lg:text-6xl">
                   <span className="block">{v.brand}</span>
-                  <span className="block text-muted-foreground/60 italic font-light">{v.model}</span>
+                  <span className="block text-muted-foreground/60 italic font-light">
+                    {v.model}
+                  </span>
                 </h1>
 
                 <div className="mt-8 flex items-baseline justify-between gap-4 pb-6 border-b border-border">
                   <div>
-                    <p className="text-3xl sm:text-4xl font-semibold tracking-tight">{formatMXN(v.price)}</p>
+                    <p className="text-3xl sm:text-4xl font-semibold tracking-tight">
+                      {formatMXN(v.price)}
+                    </p>
                     <p className="text-sm text-muted-foreground mt-1">
-                      o <span className="font-medium text-foreground">{formatMXN(v.monthly)}</span>/mes
+                      o <span className="font-medium text-foreground">{formatMXN(v.monthly)}</span>
+                      /mes
                     </p>
                   </div>
                   <ShieldCheck className="h-6 w-6 text-primary shrink-0" />
@@ -191,9 +213,17 @@ function AutoPage() {
         {/* Specs grid */}
         <section className="mt-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-            <SpecBlock icon={<Gauge className="h-5 w-5" />} label="Kilometraje" value={`${v.mileage.toLocaleString("es-MX")} km`} />
+            <SpecBlock
+              icon={<Gauge className="h-5 w-5" />}
+              label="Kilometraje"
+              value={`${v.mileage.toLocaleString("es-MX")} km`}
+            />
             <SpecBlock icon={<Fuel className="h-5 w-5" />} label="Combustible" value={v.fuel} />
-            <SpecBlock icon={<Settings2 className="h-5 w-5" />} label="Transmisión" value={v.transmission} />
+            <SpecBlock
+              icon={<Settings2 className="h-5 w-5" />}
+              label="Transmisión"
+              value={v.transmission}
+            />
           </div>
 
           {v.specs.length > 0 && (
@@ -212,12 +242,18 @@ function AutoPage() {
         <section className="mt-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="bg-foreground text-background rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight">¿Te interesa este auto?</h3>
-              <p className="mt-2 text-background/70">Escríbeme por WhatsApp y resolvemos cualquier duda.</p>
+              <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+                ¿Te interesa este auto?
+              </h3>
+              <p className="mt-2 text-background/70">
+                Escríbeme por WhatsApp y resolvemos cualquier duda.
+              </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
               <a href={waLink(msg)} target="_blank" rel="noreferrer">
-                <Button variant="whatsapp" size="lg" className="w-full"><MessageCircle className="h-4 w-4" /> WhatsApp</Button>
+                <Button variant="whatsapp" size="lg" className="w-full">
+                  <MessageCircle className="h-4 w-4" /> WhatsApp
+                </Button>
               </a>
             </div>
           </div>
@@ -229,7 +265,15 @@ function AutoPage() {
   );
 }
 
-function SpecBlock({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function SpecBlock({
+  icon,
+  label,
+  value,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+}) {
   return (
     <div className="bg-card border border-border rounded-2xl p-5">
       <div className="text-muted-foreground">{icon}</div>

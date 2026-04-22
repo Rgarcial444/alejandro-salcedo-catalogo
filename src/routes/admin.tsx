@@ -93,14 +93,23 @@ function AdminPage() {
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+          >
             <ArrowLeft className="h-4 w-4" /> Volver al sitio
           </Link>
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" onClick={handleSignOut}>
               <LogOut className="h-4 w-4" /> Salir
             </Button>
-            <Button variant="outline" size="sm" onClick={() => { if (confirm("¿Restablecer al inventario inicial?")) reset(); }}>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                if (confirm("¿Restablecer al inventario inicial?")) reset();
+              }}
+            >
               <RotateCcw className="h-4 w-4" /> Restablecer
             </Button>
             <Button variant="hero" size="sm" onClick={startNew}>
@@ -136,16 +145,26 @@ function AdminPage() {
                   <tr key={v.id} className="border-t border-border hover:bg-secondary/30">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <img src={v.images[0]} alt="" className="h-12 w-16 object-cover rounded-md bg-muted" />
+                        <img
+                          src={v.images[0]}
+                          alt=""
+                          className="h-12 w-16 object-cover rounded-md bg-muted"
+                        />
                         <div>
-                          <p className="font-medium">{v.brand} {v.model}</p>
-                          <p className="text-xs text-muted-foreground">{v.fuel} · {v.transmission}</p>
+                          <p className="font-medium">
+                            {v.brand} {v.model}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {v.fuel} · {v.transmission}
+                          </p>
                         </div>
                       </div>
                     </td>
                     <td className="px-4 py-3 hidden md:table-cell">{v.year}</td>
                     <td className="px-4 py-3 font-medium">{formatMXN(v.price)}</td>
-                    <td className="px-4 py-3 hidden lg:table-cell">{v.mileage.toLocaleString("es-MX")}</td>
+                    <td className="px-4 py-3 hidden lg:table-cell">
+                      {v.mileage.toLocaleString("es-MX")}
+                    </td>
                     <td className="px-4 py-3 text-right">
                       <div className="inline-flex gap-1">
                         <Button variant="ghost" size="sm" onClick={() => startEdit(v)}>
@@ -154,7 +173,9 @@ function AdminPage() {
                         <Button
                           variant="ghost"
                           size="sm"
-                          onClick={() => { if (confirm(`¿Eliminar ${v.brand} ${v.model}?`)) remove(v.id); }}
+                          onClick={() => {
+                            if (confirm(`¿Eliminar ${v.brand} ${v.model}?`)) remove(v.id);
+                          }}
                         >
                           <Trash2 className="h-4 w-4 text-destructive" />
                         </Button>
@@ -163,7 +184,11 @@ function AdminPage() {
                   </tr>
                 ))}
                 {vehicles.length === 0 && (
-                  <tr><td colSpan={5} className="px-4 py-12 text-center text-muted-foreground">Sin autos. Agrega el primero.</td></tr>
+                  <tr>
+                    <td colSpan={5} className="px-4 py-12 text-center text-muted-foreground">
+                      Sin autos. Agrega el primero.
+                    </td>
+                  </tr>
                 )}
               </tbody>
             </table>
@@ -175,30 +200,97 @@ function AdminPage() {
         <div className="fixed inset-0 z-50 bg-foreground/40 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-6 overflow-y-auto">
           <div className="bg-card w-full sm:max-w-3xl sm:rounded-2xl shadow-[var(--shadow-elegant)] max-h-[95vh] overflow-y-auto">
             <div className="sticky top-0 bg-card/95 backdrop-blur border-b border-border px-6 py-4 flex items-center justify-between">
-              <h2 className="font-semibold tracking-tight">{isNew ? "Nuevo auto" : "Editar auto"}</h2>
-              <Button variant="ghost" size="icon" onClick={close}><X className="h-4 w-4" /></Button>
+              <h2 className="font-semibold tracking-tight">
+                {isNew ? "Nuevo auto" : "Editar auto"}
+              </h2>
+              <Button variant="ghost" size="icon" onClick={close}>
+                <X className="h-4 w-4" />
+              </Button>
             </div>
 
             <div className="p-6 space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Field label="Marca"><Input value={editing.brand} onChange={(e) => setEditing({ ...editing, brand: e.target.value })} /></Field>
-                <Field label="Modelo"><Input value={editing.model} onChange={(e) => setEditing({ ...editing, model: e.target.value })} /></Field>
-                <Field label="Año"><Input type="number" value={editing.year} onChange={(e) => setEditing({ ...editing, year: +e.target.value })} /></Field>
-                <Field label="Kilometraje"><Input type="number" value={editing.mileage} onChange={(e) => setEditing({ ...editing, mileage: +e.target.value })} /></Field>
-                <Field label="Precio (MXN)"><Input type="number" value={editing.price} onChange={(e) => setEditing({ ...editing, price: +e.target.value })} /></Field>
-                <Field label="Mensualidad estimada"><Input type="number" value={editing.monthly} onChange={(e) => setEditing({ ...editing, monthly: +e.target.value })} /></Field>
+                <Field label="Marca">
+                  <Input
+                    value={editing.brand}
+                    onChange={(e) => setEditing({ ...editing, brand: e.target.value })}
+                  />
+                </Field>
+                <Field label="Modelo">
+                  <Input
+                    value={editing.model}
+                    onChange={(e) => setEditing({ ...editing, model: e.target.value })}
+                  />
+                </Field>
+                <Field label="Año">
+                  <Input
+                    type="number"
+                    value={editing.year}
+                    onChange={(e) => setEditing({ ...editing, year: +e.target.value })}
+                  />
+                </Field>
+                <Field label="Kilometraje">
+                  <Input
+                    type="number"
+                    value={editing.mileage}
+                    onChange={(e) => setEditing({ ...editing, mileage: +e.target.value })}
+                  />
+                </Field>
+                <Field label="Precio (MXN)">
+                  <Input
+                    type="number"
+                    value={editing.price}
+                    onChange={(e) => setEditing({ ...editing, price: +e.target.value })}
+                  />
+                </Field>
+                <Field label="Mensualidad estimada">
+                  <Input
+                    type="number"
+                    value={editing.monthly}
+                    onChange={(e) => setEditing({ ...editing, monthly: +e.target.value })}
+                  />
+                </Field>
                 <Field label="Combustible">
-                  <select className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm" value={editing.fuel} onChange={(e) => setEditing({ ...editing, fuel: e.target.value as Vehicle["fuel"] })}>
-                    {["Gasolina", "Híbrido", "Eléctrico", "Diésel"].map((f) => <option key={f} value={f}>{f}</option>)}
+                  <select
+                    className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm"
+                    value={editing.fuel}
+                    onChange={(e) =>
+                      setEditing({ ...editing, fuel: e.target.value as Vehicle["fuel"] })
+                    }
+                  >
+                    {["Gasolina", "Híbrido", "Eléctrico", "Diésel"].map((f) => (
+                      <option key={f} value={f}>
+                        {f}
+                      </option>
+                    ))}
                   </select>
                 </Field>
                 <Field label="Transmisión">
-                  <select className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm" value={editing.transmission} onChange={(e) => setEditing({ ...editing, transmission: e.target.value as Vehicle["transmission"] })}>
-                    {["Automática", "Manual"].map((t) => <option key={t} value={t}>{t}</option>)}
+                  <select
+                    className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm"
+                    value={editing.transmission}
+                    onChange={(e) =>
+                      setEditing({
+                        ...editing,
+                        transmission: e.target.value as Vehicle["transmission"],
+                      })
+                    }
+                  >
+                    {["Automática", "Manual"].map((t) => (
+                      <option key={t} value={t}>
+                        {t}
+                      </option>
+                    ))}
                   </select>
                 </Field>
                 <Field label="Condición">
-                  <select className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm" value={editing.condition} onChange={(e) => setEditing({ ...editing, condition: e.target.value as "Nuevo" | "Seminuevo" })}>
+                  <select
+                    className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm"
+                    value={editing.condition}
+                    onChange={(e) =>
+                      setEditing({ ...editing, condition: e.target.value as "Nuevo" | "Seminuevo" })
+                    }
+                  >
                     <option value="Seminuevo">Seminuevo</option>
                     <option value="Nuevo">Nuevo</option>
                   </select>
@@ -206,18 +298,28 @@ function AdminPage() {
               </div>
 
               <label className="flex items-center gap-2 text-sm">
-                <input type="checkbox" checked={!!editing.featured} onChange={(e) => setEditing({ ...editing, featured: e.target.checked })} />
+                <input
+                  type="checkbox"
+                  checked={!!editing.featured}
+                  onChange={(e) => setEditing({ ...editing, featured: e.target.checked })}
+                />
                 Marcar como destacado
               </label>
 
               <Field label="Descripción">
-                <Textarea rows={3} value={editing.description} onChange={(e) => setEditing({ ...editing, description: e.target.value })} />
+                <Textarea
+                  rows={3}
+                  value={editing.description}
+                  onChange={(e) => setEditing({ ...editing, description: e.target.value })}
+                />
               </Field>
 
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <Label>Fotos del auto</Label>
-                  <span className="text-xs text-muted-foreground">{editing.images.length} foto(s)</span>
+                  <span className="text-xs text-muted-foreground">
+                    {editing.images.length} foto(s)
+                  </span>
                 </div>
                 <ImageUploader
                   images={editing.images}
@@ -228,22 +330,47 @@ function AdminPage() {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <Label>Especificaciones</Label>
-                  <Button variant="ghost" size="sm" onClick={() => setEditing({ ...editing, specs: [...editing.specs, { label: "", value: "" }] })}>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() =>
+                      setEditing({
+                        ...editing,
+                        specs: [...editing.specs, { label: "", value: "" }],
+                      })
+                    }
+                  >
                     <Plus className="h-3 w-3" /> Agregar
                   </Button>
                 </div>
                 <div className="space-y-2">
                   {editing.specs.map((s, i) => (
                     <div key={i} className="grid grid-cols-[1fr_1fr_auto] gap-2">
-                      <Input placeholder="Etiqueta" value={s.label} onChange={(e) => {
-                        const next = [...editing.specs]; next[i] = { ...next[i], label: e.target.value };
-                        setEditing({ ...editing, specs: next });
-                      }} />
-                      <Input placeholder="Valor" value={s.value} onChange={(e) => {
-                        const next = [...editing.specs]; next[i] = { ...next[i], value: e.target.value };
-                        setEditing({ ...editing, specs: next });
-                      }} />
-                      <Button variant="ghost" size="icon" onClick={() => setEditing({ ...editing, specs: editing.specs.filter((_, j) => j !== i) })}>
+                      <Input
+                        placeholder="Etiqueta"
+                        value={s.label}
+                        onChange={(e) => {
+                          const next = [...editing.specs];
+                          next[i] = { ...next[i], label: e.target.value };
+                          setEditing({ ...editing, specs: next });
+                        }}
+                      />
+                      <Input
+                        placeholder="Valor"
+                        value={s.value}
+                        onChange={(e) => {
+                          const next = [...editing.specs];
+                          next[i] = { ...next[i], value: e.target.value };
+                          setEditing({ ...editing, specs: next });
+                        }}
+                      />
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() =>
+                          setEditing({ ...editing, specs: editing.specs.filter((_, j) => j !== i) })
+                        }
+                      >
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -253,8 +380,12 @@ function AdminPage() {
             </div>
 
             <div className="sticky bottom-0 bg-card/95 backdrop-blur border-t border-border px-6 py-4 flex justify-end gap-2">
-              <Button variant="outline" onClick={close}>Cancelar</Button>
-              <Button variant="hero" onClick={save}><Save className="h-4 w-4" /> Guardar</Button>
+              <Button variant="outline" onClick={close}>
+                Cancelar
+              </Button>
+              <Button variant="hero" onClick={save}>
+                <Save className="h-4 w-4" /> Guardar
+              </Button>
             </div>
           </div>
         </div>
@@ -266,7 +397,9 @@ function AdminPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <Label className="mb-1.5 block text-xs uppercase tracking-wide text-muted-foreground">{label}</Label>
+      <Label className="mb-1.5 block text-xs uppercase tracking-wide text-muted-foreground">
+        {label}
+      </Label>
       {children}
     </div>
   );

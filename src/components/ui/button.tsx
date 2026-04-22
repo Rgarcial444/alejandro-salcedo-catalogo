@@ -16,8 +16,10 @@ const buttonVariants = cva(
         ghost: "hover:bg-secondary hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         hero: "bg-foreground text-background hover:bg-foreground/90 shadow-[var(--shadow-elegant)] hover:scale-[1.02]",
-        whatsapp: "bg-[oklch(0.65_0.17_150)] text-white hover:bg-[oklch(0.6_0.17_150)] shadow-md hover:shadow-lg hover:scale-[1.02]",
-        premium: "bg-[image:var(--gradient-primary)] text-white shadow-[var(--shadow-elegant)] hover:scale-[1.02]",
+        whatsapp:
+          "bg-[oklch(0.65_0.17_150)] text-white hover:bg-[oklch(0.6_0.17_150)] shadow-md hover:shadow-lg hover:scale-[1.02]",
+        premium:
+          "bg-[image:var(--gradient-primary)] text-white shadow-[var(--shadow-elegant)] hover:scale-[1.02]",
       },
       size: {
         default: "h-10 px-5 py-2",

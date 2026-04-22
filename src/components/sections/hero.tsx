@@ -32,8 +32,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.05]"
           >
-            Encuentra tu próximo auto con{" "}
-            <Highlight>total confianza</Highlight>
+            Encuentra tu próximo auto con <Highlight>total confianza</Highlight>
           </motion.h1>
 
           <motion.p
@@ -42,8 +41,8 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed"
           >
-            Inventario verificado, atención personalizada y contacto directo conmigo.
-            Te acompaño desde la búsqueda hasta la entrega de tu vehículo.
+            Inventario verificado, atención personalizada y contacto directo conmigo. Te acompaño
+            desde la búsqueda hasta la entrega de tu vehículo.
           </motion.p>
 
           <motion.div
@@ -60,7 +59,11 @@ export function Hero() {
                 </Button>
               </span>
             </a>
-            <a href={waLink("Hola Alejandro, me interesa conocer tu inventario.")} target="_blank" rel="noreferrer">
+            <a
+              href={waLink("Hola Alejandro, me interesa conocer tu inventario.")}
+              target="_blank"
+              rel="noreferrer"
+            >
               <Button variant="whatsapp" size="xl">
                 <MessageCircle className="h-4 w-4" /> Contactar por WhatsApp
               </Button>
@@ -99,7 +102,14 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.2 }}
             className="absolute top-0 right-0 w-[78%] h-[62%] rounded-3xl overflow-hidden shadow-[var(--shadow-elegant)] border border-border"
           >
-            <img src={heroImages[0]} alt="Mazda CX-5 premium" className="h-full w-full object-cover" loading="eager" decoding="async" fetchpriority="high" />
+            <img
+              src={heroImages[0]}
+              alt="Mazda CX-5 premium"
+              className="h-full w-full object-cover"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 40, rotate: -4 }}
@@ -107,7 +117,13 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.35 }}
             className="absolute bottom-0 left-0 w-[60%] h-[48%] rounded-3xl overflow-hidden shadow-[var(--shadow-elegant)] border border-border"
           >
-            <img src={heroImages[1]} alt="BMW Serie 3" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+            <img
+              src={heroImages[1]}
+              alt="BMW Serie 3"
+              className="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -119,7 +135,10 @@ export function Hero() {
             <p className="mt-1 text-2xl font-semibold tracking-tight">{"<"} 5 min</p>
             <div className="mt-3 flex -space-x-2">
               {[0, 1, 2].map((i) => (
-                <div key={i} className="h-7 w-7 rounded-full border-2 border-background bg-gradient-to-br from-primary to-accent" />
+                <div
+                  key={i}
+                  className="h-7 w-7 rounded-full border-2 border-background bg-gradient-to-br from-primary to-accent"
+                />
               ))}
             </div>
           </motion.div>

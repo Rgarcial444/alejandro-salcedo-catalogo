@@ -15,8 +15,7 @@ export type Vehicle = {
   specs: { label: string; value: string }[];
 };
 
-const u = (id: string) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=80`;
+const u = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=80`;
 
 export const vehicles: Vehicle[] = [
   {
@@ -108,10 +107,7 @@ export const vehicles: Vehicle[] = [
     transmission: "Automática",
     featured: true,
     condition: "Seminuevo",
-    images: [
-      u("photo-1555215695-3004980ad54e"),
-      u("photo-1606664515524-ed2f786a0bd6"),
-    ],
+    images: [u("photo-1555215695-3004980ad54e"), u("photo-1606664515524-ed2f786a0bd6")],
     description:
       "Sedán deportivo con paquete M Sport. Manejo ágil, tecnología iDrive 8 y acabados de lujo.",
     specs: [
@@ -132,10 +128,7 @@ export const vehicles: Vehicle[] = [
     fuel: "Gasolina",
     transmission: "Automática",
     condition: "Seminuevo",
-    images: [
-      u("photo-1612825173281-9a193378527e"),
-      u("photo-1606152421802-db97b9c7a11b"),
-    ],
+    images: [u("photo-1612825173281-9a193378527e"), u("photo-1606152421802-db97b9c7a11b")],
     description:
       "Sedán deportivo turbo con DSG. Equipamiento completo, faros LED matrix y asientos deportivos.",
     specs: [
@@ -156,10 +149,7 @@ export const vehicles: Vehicle[] = [
     fuel: "Gasolina",
     transmission: "Automática",
     condition: "Seminuevo",
-    images: [
-      u("photo-1568844293986-8d0400bd4745"),
-      u("photo-1502877338535-766e1452684a"),
-    ],
+    images: [u("photo-1568844293986-8d0400bd4745"), u("photo-1502877338535-766e1452684a")],
     description:
       "SUV familiar con el equipamiento más alto. Espacio premium, tecnología Honda Sensing y excelente economía.",
     specs: [

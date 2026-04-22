@@ -30,11 +30,11 @@ export function InventoryCard({ v, onClick }: { v: Vehicle; onClick: () => void 
         <span className="absolute top-3 right-3 bg-background/95 backdrop-blur text-xs font-medium px-2.5 py-1 rounded-full border border-border">
           {v.year}
         </span>
-        <span className={`absolute bottom-3 left-3 text-xs font-medium px-2.5 py-1 rounded-full ${
-          v.condition === "Nuevo" 
-            ? "bg-green-500 text-white" 
-            : "bg-amber-500 text-white"
-        }`}>
+        <span
+          className={`absolute bottom-3 left-3 text-xs font-medium px-2.5 py-1 rounded-full ${
+            v.condition === "Nuevo" ? "bg-green-500 text-white" : "bg-amber-500 text-white"
+          }`}
+        >
           {v.condition}
         </span>
       </div>
@@ -50,9 +50,15 @@ export function InventoryCard({ v, onClick }: { v: Vehicle; onClick: () => void 
         </div>
 
         <div className="mt-4 pt-4 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
-          <span className="flex items-center gap-1.5"><Gauge className="h-3.5 w-3.5" /> {v.mileage.toLocaleString("es-MX")} km</span>
-          <span className="flex items-center gap-1.5"><Fuel className="h-3.5 w-3.5" /> {v.fuel}</span>
-          <span className="flex items-center gap-1.5"><Settings2 className="h-3.5 w-3.5" /> {v.transmission.slice(0, 4)}.</span>
+          <span className="flex items-center gap-1.5">
+            <Gauge className="h-3.5 w-3.5" /> {v.mileage.toLocaleString("es-MX")} km
+          </span>
+          <span className="flex items-center gap-1.5">
+            <Fuel className="h-3.5 w-3.5" /> {v.fuel}
+          </span>
+          <span className="flex items-center gap-1.5">
+            <Settings2 className="h-3.5 w-3.5" /> {v.transmission.slice(0, 4)}.
+          </span>
         </div>
       </div>
     </motion.button>

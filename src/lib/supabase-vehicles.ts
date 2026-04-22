@@ -1,6 +1,24 @@
 import { supabase } from "@/lib/supabase";
 import type { Vehicle } from "@/data/vehicles";
 
+type SupabaseVehicle = {
+  id: string;
+  brand: string;
+  model: string;
+  year: number;
+  price: number;
+  monthly: number;
+  mileage: number;
+  fuel: string;
+  transmission: string;
+  featured: boolean;
+  condition: string;
+  images: string[];
+  description: string;
+  specs: { label: string; value: string }[];
+  created_at: string;
+};
+
 export async function fetchVehiclesFromSupabase(): Promise<Vehicle[]> {
   const { data, error } = await supabase
     .from("vehicles")
@@ -12,7 +30,7 @@ export async function fetchVehiclesFromSupabase(): Promise<Vehicle[]> {
     return [];
   }
 
-  return data.map((v: any) => ({
+  return (data as SupabaseVehicle[]).map((v) => ({
     id: v.id,
     brand: v.brand,
     model: v.model,
@@ -31,22 +49,25 @@ export async function fetchVehiclesFromSupabase(): Promise<Vehicle[]> {
 }
 
 export async function saveVehicleToSupabase(vehicle: Vehicle): Promise<void> {
-  const { error } = await supabase.from("vehicles").upsert({
-    id: vehicle.id,
-    brand: vehicle.brand,
-    model: vehicle.model,
-    year: vehicle.year,
-    price: vehicle.price,
-    monthly: vehicle.monthly,
-    mileage: vehicle.mileage,
-    fuel: vehicle.fuel,
-    transmission: vehicle.transmission,
-    featured: vehicle.featured,
-    condition: vehicle.condition || "Seminuevo",
-    images: vehicle.images,
-    description: vehicle.description,
-    specs: vehicle.specs,
-  }, { onConflict: "id" });
+  const { error } = await supabase.from("vehicles").upsert(
+    {
+      id: vehicle.id,
+      brand: vehicle.brand,
+      model: vehicle.model,
+      year: vehicle.year,
+      price: vehicle.price,
+      monthly: vehicle.monthly,
+      mileage: vehicle.mileage,
+      fuel: vehicle.fuel,
+      transmission: vehicle.transmission,
+      featured: vehicle.featured,
+      condition: vehicle.condition || "Seminuevo",
+      images: vehicle.images,
+      description: vehicle.description,
+      specs: vehicle.specs,
+    },
+    { onConflict: "id" },
+  );
 
   if (error) {
     console.error("Error saving vehicle:", error);

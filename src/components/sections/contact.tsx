@@ -25,12 +25,17 @@ export function Contact() {
             Hablemos de tu próximo auto
           </h2>
           <p className="mt-3 text-muted-foreground max-w-md">
-            Escríbeme por WhatsApp para una respuesta inmediata, o llena el formulario y te contacto en menos de 5 minutos.
+            Escríbeme por WhatsApp para una respuesta inmediata, o llena el formulario y te contacto
+            en menos de 5 minutos.
           </p>
 
           <div className="mt-8 space-y-3">
-            <a href={waLink("Hola Alejandro, me interesa información.")} target="_blank" rel="noreferrer"
-              className="flex items-center gap-4 p-4 rounded-2xl border border-border bg-card hover:border-foreground/30 transition group">
+            <a
+              href={waLink("Hola Alejandro, me interesa información.")}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-4 p-4 rounded-2xl border border-border bg-card hover:border-foreground/30 transition group"
+            >
               <span className="h-11 w-11 rounded-xl bg-[oklch(0.65_0.17_150)] text-white grid place-items-center">
                 <MessageCircle className="h-5 w-5" />
               </span>
@@ -39,8 +44,10 @@ export function Contact() {
                 <p className="text-xs text-muted-foreground">Respuesta en menos de 5 minutos</p>
               </div>
             </a>
-            <a href={`tel:${PHONE_TEL}`}
-              className="flex items-center gap-4 p-4 rounded-2xl border border-border bg-card hover:border-foreground/30 transition">
+            <a
+              href={`tel:${PHONE_TEL}`}
+              className="flex items-center gap-4 p-4 rounded-2xl border border-border bg-card hover:border-foreground/30 transition"
+            >
               <span className="h-11 w-11 rounded-xl bg-foreground text-background grid place-items-center">
                 <Phone className="h-5 w-5" />
               </span>
@@ -78,21 +85,36 @@ export function Contact() {
           transition={{ duration: 0.5 }}
           className="p-7 sm:p-9 bg-white rounded-3xl shadow-[var(--shadow-card)] h-fit lg:sticky lg:top-24 relative overflow-hidden"
           style={{
-            background: "linear-gradient(#fff, #fff) padding-box, linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899, #f97316) border-box",
+            background:
+              "linear-gradient(#fff, #fff) padding-box, linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899, #f97316) border-box",
             border: "2px solid transparent",
           }}
         >
-          <h3 className="text-xl font-semibold tracking-tight text-gray-900">Solicita información</h3>
+          <h3 className="text-xl font-semibold tracking-tight text-gray-900">
+            Solicita información
+          </h3>
           <p className="text-sm text-gray-500 mt-1">Cuéntame qué auto buscas y te contacto.</p>
 
           <div className="mt-6 space-y-4">
             <div>
               <label className="text-xs font-medium text-gray-700">Nombre</label>
-              <Input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="mt-1.5 h-11 rounded-xl text-gray-900 placeholder:text-gray-400" placeholder="Tu nombre completo" />
+              <Input
+                required
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="mt-1.5 h-11 rounded-xl text-gray-900 placeholder:text-gray-400"
+                placeholder="Tu nombre completo"
+              />
             </div>
             <div>
               <label className="text-xs font-medium text-gray-700">Teléfono</label>
-              <Input required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="mt-1.5 h-11 rounded-xl text-gray-900 placeholder:text-gray-400" placeholder="55 1234 5678" />
+              <Input
+                required
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                className="mt-1.5 h-11 rounded-xl text-gray-900 placeholder:text-gray-400"
+                placeholder="55 1234 5678"
+              />
             </div>
             <div>
               <label className="text-xs font-medium text-gray-700">¿En qué te ayudo?</label>
