@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import { Filter, Search, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Filter, Search, X, ChevronDown, ChevronUp } from "lucide-react";
 import { brands, fuels, transmissions } from "@/data/vehicles";
 import { useVehicles } from "@/hooks/use-vehicles";
 import { InventoryCard } from "@/components/inventory/inventory-card";
@@ -23,6 +23,7 @@ export function Inventory() {
   const [trans, setTrans] = useState("Todas");
   const [priceIdx, setPriceIdx] = useState(0);
   const [query, setQuery] = useState("");
+  const [showFilters, setShowFilters] = useState(false);
 
   const filtered = useMemo(() => {
     const range = priceRanges[priceIdx];
@@ -77,48 +78,67 @@ export function Inventory() {
           </div>
         </div>
 
-        {/* Filters */}
+        {/* Filters - expandable */}
         <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-card border border-border">
-          <div className="flex items-center justify-between mb-4">
+          <button 
+            onClick={() => setShowFilters(!showFilters)}
+            className="flex items-center justify-between w-full"
+          >
             <div className="flex items-center gap-2 text-sm font-medium">
               <Filter className="h-4 w-4" /> Filtros
+              {showFilters ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
             </div>
-            <button onClick={reset} className="text-xs text-muted-foreground hover:text-foreground inline-flex items-center gap-1">
+            <button 
+              onClick={(e) => { e.stopPropagation(); reset(); }} 
+              className="text-xs text-muted-foreground hover:text-foreground inline-flex items-center gap-1"
+            >
               <X className="h-3 w-3" /> Limpiar
             </button>
-          </div>
+          </button>
 
-          <div className="space-y-3">
-            <div>
-              <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Marca</p>
-              <div className="flex flex-wrap gap-2">
-                <Chip label="Todas" active={brand === "Todas"} onClick={() => setBrand("Todas")} />
-                {brands.map((b) => <Chip key={b} label={b} active={brand === b} onClick={() => setBrand(b)} />)}
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-              <div>
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Precio</p>
-                <div className="flex flex-wrap gap-2">
-                  {priceRanges.map((p, i) => <Chip key={p.label} label={p.label} active={priceIdx === i} onClick={() => setPriceIdx(i)} />)}
+          <AnimatePresence>
+            {showFilters && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <div className="space-y-3 pt-4">
+                  <div>
+                    <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Marca</p>
+                    <div className="flex flex-wrap gap-2">
+                      <Chip label="Todas" active={brand === "Todas"} onClick={() => setBrand("Todas")} />
+                      {brands.map((b) => <Chip key={b} label={b} active={brand === b} onClick={() => setBrand(b)} />)}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                    <div>
+                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Precio</p>
+                      <div className="flex flex-wrap gap-2">
+                        {priceRanges.map((p, i) => <Chip key={p.label} label={p.label} active={priceIdx === i} onClick={() => setPriceIdx(i)} />)}
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Combustible</p>
+                      <div className="flex flex-wrap gap-2">
+                        <Chip label="Todos" active={fuel === "Todos"} onClick={() => setFuel("Todos")} />
+                        {fuels.map((f) => <Chip key={f} label={f} active={fuel === f} onClick={() => setFuel(f)} />)}
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Transmisión</p>
+                      <div className="flex flex-wrap gap-2">
+                        <Chip label="Todas" active={trans === "Todas"} onClick={() => setTrans("Todas")} />
+                        {transmissions.map((t) => <Chip key={t} label={t} active={trans === t} onClick={() => setTrans(t)} />)}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Combustible</p>
-                <div className="flex flex-wrap gap-2">
-                  <Chip label="Todos" active={fuel === "Todos"} onClick={() => setFuel("Todos")} />
-                  {fuels.map((f) => <Chip key={f} label={f} active={fuel === f} onClick={() => setFuel(f)} />)}
-                </div>
-              </div>
-              <div>
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">Transmisión</p>
-                <div className="flex flex-wrap gap-2">
-                  <Chip label="Todas" active={trans === "Todas"} onClick={() => setTrans("Todas")} />
-                  {transmissions.map((t) => <Chip key={t} label={t} active={trans === t} onClick={() => setTrans(t)} />)}
-                </div>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Grid */}
