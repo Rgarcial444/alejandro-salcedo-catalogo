@@ -112,7 +112,7 @@ export function ImageUploader({ images, onChange }: Props) {
           </span>
         </p>
         <p className="mt-1 text-xs text-muted-foreground">
-          JPG, PNG o WEBP · hasta 4 MB cada una. La primera será la portada.
+          JPG, PNG o WEBP · hasta 10 MB cada una. La primera será la portada.
         </p>
         <input
           ref={inputRef}
