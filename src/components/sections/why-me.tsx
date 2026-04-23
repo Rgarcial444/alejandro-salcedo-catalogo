@@ -42,7 +42,7 @@ const benefits = [
   },
   {
     icon: HandCoins,
-    title: "Apoyo con financiamiento",
+    title: "Apoyo con financiamiento bancario",
     description: "Te ayudo a comparar opciones de crédito con las mejores tasas.",
     badgeText: "Mejor tasa",
     badgeColor: "#1D4ED8",

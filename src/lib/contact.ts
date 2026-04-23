@@ -1,6 +1,6 @@
-export const PHONE = "+52 55 4070 5962";
-export const PHONE_TEL = "+5215540705962";
-export const WHATSAPP_NUMBER = "5215540705962";
+export const PHONE = "+52 55 3181 8373";
+export const PHONE_TEL = "+5215531818373";
+export const WHATSAPP_NUMBER = "5215531818373";
 
 export const waLink = (message: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
