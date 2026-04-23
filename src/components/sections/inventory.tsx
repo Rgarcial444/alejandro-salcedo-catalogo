@@ -63,8 +63,8 @@ export function Inventory() {
       onClick={onClick}
       className={`px-3.5 py-1.5 rounded-full text-xs font-medium border transition ${
         active
-          ? "bg-foreground text-background border-foreground"
-          : "bg-card text-muted-foreground border-border hover:border-foreground/40 hover:text-foreground"
+          ? "bg-gray-900 text-white border-gray-900"
+          : "bg-white text-gray-700 border-gray-200 hover:border-gray-400 hover:text-gray-900"
       }`}
     >
       {label}
