@@ -89,6 +89,8 @@ export function useVehicles() {
   const transmissions = [...new Set(list.map((v) => v.transmission))];
 
   const upsert = useCallback(async (v: Vehicle) => {
+    // Guardar primero en Supabase para detectar errores reales (tamaño de payload, RLS, etc.)
+    await saveVehicleToSupabase(v);
     const current = read();
     const idx = current.findIndex((x) => x.id === v.id);
     if (idx >= 0) {
@@ -97,11 +99,6 @@ export function useVehicles() {
       write(next);
     } else {
       write([v, ...current]);
-    }
-    try {
-      await saveVehicleToSupabase(v);
-    } catch (e) {
-      console.log("Error saving to Supabase:", e);
     }
   }, []);
 
