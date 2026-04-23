@@ -97,17 +97,18 @@ export function Inventory() {
 
         {/* Filters - expandable */}
         <div
-          className="mt-8 p-4 sm:p-5 rounded-2xl bg-card border border-border"
+          className="mt-8 p-4 sm:p-5 rounded-2xl"
           style={{
             background: "linear-gradient(#fff, #fff) padding-box, linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899, #f97316) border-box",
             border: "2px solid transparent",
           }}
         >
           <button
+            type="button"
             onClick={() => setShowFilters(!showFilters)}
             className="flex items-center justify-between w-full"
           >
-            <div className="flex items-center gap-2 text-sm font-medium">
+            <div className="flex items-center gap-2 text-sm font-medium text-gray-900">
               <Filter className="h-4 w-4" /> Filtros
               {showFilters ? (
                 <ChevronUp className="h-4 w-4" />
@@ -116,11 +117,12 @@ export function Inventory() {
               )}
             </div>
             <button
+              type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 reset();
               }}
-              className="text-xs text-muted-foreground hover:text-foreground inline-flex items-center gap-1"
+              className="text-xs text-gray-500 hover:text-gray-900 inline-flex items-center gap-1"
             >
               <X className="h-3 w-3" /> Limpiar
             </button>

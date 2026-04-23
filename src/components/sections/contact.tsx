@@ -31,10 +31,19 @@ export function Contact() {
       console.log("Error saving submission:", err);
     }
 
-    const msg = `Hola Alejandro, soy ${form.name} (${form.phone}). ${form.message}`;
-    window.open(waLink(msg), "_blank");
     setSent(true);
     setSaving(false);
+  };
+
+  const openWhatsApp = () => {
+    const msg = `Hola Alejandro, soy ${form.name} (${form.phone}). ${form.message}`;
+    window.open(waLink(msg), "_blank");
+  };
+
+  const closeForm = () => {
+    setForm({ name: "", phone: "", message: "" });
+    setSent(false);
+    setConsent(false);
   };
 
   return (
@@ -177,17 +186,28 @@ export function Contact() {
               <>
                 <span className="animate-spin mr-2">⏳</span> Enviando...
               </>
-            ) : sent ? (
-              <>
-                <Check className="h-4 w-4" /> Enviado
-              </>
             ) : (
               <>
                 <Send className="h-4 w-4" /> Enviar mensaje
               </>
             )}
           </Button>
-          {sent && <p className="text-xs text-center text-green-600 mt-3">¡Mensaje enviado! Te contactaré pronto.</p>}
+
+          {sent && (
+            <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-xl text-center">
+              <Check className="h-8 w-8 text-green-600 mx-auto mb-2" />
+              <p className="font-medium text-green-800">¡En breve nos comunicamos contigo!</p>
+              <p className="text-sm text-green-600 mt-1">También puedes contactarnos por WhatsApp:</p>
+              <div className="flex gap-2 mt-3 justify-center">
+                <Button variant="outline" size="sm" onClick={closeForm}>
+                  Cerrar
+                </Button>
+                <Button variant="whatsapp" size="sm" onClick={openWhatsApp}>
+                  <MessageCircle className="h-4 w-4" /> Abrir WhatsApp
+                </Button>
+              </div>
+            </div>
+          )}
           <p className="text-[11px] text-center text-gray-400 mt-3">
             Al enviar, aceptas ser contactado por Alejandro Salcedo.
           </p>
