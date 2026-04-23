@@ -60,7 +60,7 @@ export async function saveVehicleToSupabase(vehicle: Vehicle): Promise<void> {
       mileage: vehicle.mileage,
       fuel: vehicle.fuel,
       transmission: vehicle.transmission,
-      featured: vehicle.featured,
+      featured: !!vehicle.featured,
       condition: vehicle.condition || "Seminuevo",
       images: vehicle.images,
       description: vehicle.description,
@@ -71,7 +71,8 @@ export async function saveVehicleToSupabase(vehicle: Vehicle): Promise<void> {
 
   if (error) {
     console.error("Error saving vehicle:", error);
-    throw error;
+    const detail = [error.message, error.details, error.hint].filter(Boolean).join(" — ");
+    throw new Error(detail || "Error desconocido al guardar");
   }
 }
 

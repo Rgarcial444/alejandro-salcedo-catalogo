@@ -6,8 +6,8 @@ export type Vehicle = {
   price: number;
   monthly: number;
   mileage: number;
-  fuel: "Gasolina" | "Híbrido" | "Eléctrico" | "Diésel";
-  transmission: "Automática" | "Manual";
+  fuel: "Gasolina" | "Híbrido" | "Eléctrico" | "Diésel" | "Gas Natural" | "Híbrido Enchufable";
+  transmission: "Automática" | "Manual" | "CVT" | "DSG" | "Tiptronic";
   featured?: boolean;
   condition: "Nuevo" | "Seminuevo";
   images: string[];
