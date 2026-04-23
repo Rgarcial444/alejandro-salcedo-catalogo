@@ -128,7 +128,11 @@ export function ImageUploader({ images, onChange }: Props) {
       </div>
 
       {error && <p className="text-xs text-destructive">{error}</p>}
-      {busy && <p className="text-xs text-muted-foreground">Procesando imágenes…</p>}
+      {busy && (
+        <p className="text-xs text-muted-foreground">
+          Subiendo imágenes{progress ? ` (${progress.done}/${progress.total})` : ""}…
+        </p>
+      )}
 
       {/* Grid con drag para reordenar */}
       {images.length > 0 && (
