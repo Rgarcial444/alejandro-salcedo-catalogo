@@ -118,7 +118,7 @@ function AdminPage() {
     setIsNew(false);
   };
 
-  const save = () => {
+  const save = async () => {
     if (!editing) return;
     const id = editing.id?.trim() || slugify(`${editing.brand}-${editing.model}-${editing.year}`);
     const cleaned: Vehicle = {
@@ -131,8 +131,13 @@ function AdminPage() {
       alert("Marca, modelo y al menos una foto son obligatorios.");
       return;
     }
-    upsert(cleaned);
-    close();
+    try {
+      await upsert(cleaned);
+      close();
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Error al guardar el auto";
+      alert(`No se pudo guardar: ${msg}`);
+    }
   };
 
   return (

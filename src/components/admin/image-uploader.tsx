@@ -3,21 +3,27 @@ import { useRef, useState } from "react";
 import { Upload, Trash2, Star, GripVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/lib/supabase";
 
 type Props = {
   images: string[];
   onChange: (next: string[]) => void;
 };
 
-const MAX_BYTES = 4 * 1024 * 1024; // 4MB por imagen para no saturar localStorage
+const MAX_BYTES = 10 * 1024 * 1024; // 10MB por imagen (límite del bucket)
 
-function fileToDataUrl(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(String(reader.result));
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
+async function uploadToStorage(file: File): Promise<string> {
+  const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
+  const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const path = `vehicles/${safeName}`;
+  const { error } = await supabase.storage.from("images").upload(path, file, {
+    cacheControl: "3600",
+    upsert: false,
+    contentType: file.type,
   });
+  if (error) throw error;
+  const { data } = supabase.storage.from("images").getPublicUrl(path);
+  return data.publicUrl;
 }
 
 export function ImageUploader({ images, onChange }: Props) {
@@ -27,6 +33,7 @@ export function ImageUploader({ images, onChange }: Props) {
   const [overIndex, setOverIndex] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
 
   const addFiles = async (files: FileList | File[]) => {
     setError(null);
@@ -35,13 +42,27 @@ export function ImageUploader({ images, onChange }: Props) {
       const arr = Array.from(files).filter((f) => f.type.startsWith("image/"));
       const tooBig = arr.find((f) => f.size > MAX_BYTES);
       if (tooBig) {
-        setError(`La imagen "${tooBig.name}" supera los 4 MB.`);
+        setError(`La imagen "${tooBig.name}" supera los 10 MB.`);
       }
       const ok = arr.filter((f) => f.size <= MAX_BYTES);
-      const urls = await Promise.all(ok.map(fileToDataUrl));
-      onChange([...images, ...urls]);
+      if (ok.length === 0) return;
+
+      setProgress({ done: 0, total: ok.length });
+      const uploaded: string[] = [];
+      for (const file of ok) {
+        try {
+          const url = await uploadToStorage(file);
+          uploaded.push(url);
+          setProgress((p) => (p ? { ...p, done: p.done + 1 } : null));
+        } catch (e: unknown) {
+          const msg = e instanceof Error ? e.message : "Error desconocido";
+          setError(`No se pudo subir "${file.name}": ${msg}`);
+        }
+      }
+      if (uploaded.length > 0) onChange([...images, ...uploaded]);
     } finally {
       setBusy(false);
+      setProgress(null);
     }
   };
 
@@ -91,7 +112,7 @@ export function ImageUploader({ images, onChange }: Props) {
           </span>
         </p>
         <p className="mt-1 text-xs text-muted-foreground">
-          JPG, PNG o WEBP · hasta 4 MB cada una. La primera será la portada.
+          JPG, PNG o WEBP · hasta 10 MB cada una. La primera será la portada.
         </p>
         <input
           ref={inputRef}
@@ -107,7 +128,11 @@ export function ImageUploader({ images, onChange }: Props) {
       </div>
 
       {error && <p className="text-xs text-destructive">{error}</p>}
-      {busy && <p className="text-xs text-muted-foreground">Procesando imágenes…</p>}
+      {busy && (
+        <p className="text-xs text-muted-foreground">
+          Subiendo imágenes{progress ? ` (${progress.done}/${progress.total})` : ""}…
+        </p>
+      )}
 
       {/* Grid con drag para reordenar */}
       {images.length > 0 && (
