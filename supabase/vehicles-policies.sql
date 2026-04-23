@@ -1,13 +1,19 @@
 -- Vehicles table policies
--- Already exists: SELECT policy for public
--- Add INSERT policy for authenticated users
-CREATE POLICY "Allow authenticated insert" ON vehicles 
-FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+-- Public can read; only authenticated users can write
+-- Safe to re-run: drops existing policies before creating
 
--- Add UPDATE policy for authenticated users  
-CREATE POLICY "Allow authenticated update" ON vehicles 
-FOR UPDATE USING (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Allow public read" ON vehicles;
+CREATE POLICY "Allow public read" ON vehicles
+FOR SELECT USING (true);
 
--- Add DELETE policy for authenticated users
-CREATE POLICY "Allow authenticated delete" ON vehicles 
-FOR DELETE USING (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Allow authenticated insert" ON vehicles;
+CREATE POLICY "Allow authenticated insert" ON vehicles
+FOR INSERT TO authenticated WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow authenticated update" ON vehicles;
+CREATE POLICY "Allow authenticated update" ON vehicles
+FOR UPDATE TO authenticated USING (true) WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Allow authenticated delete" ON vehicles;
+CREATE POLICY "Allow authenticated delete" ON vehicles
+FOR DELETE TO authenticated USING (true);

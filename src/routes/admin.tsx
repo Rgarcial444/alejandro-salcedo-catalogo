@@ -383,7 +383,7 @@ function AdminPage() {
                       setEditing({ ...editing, fuel: e.target.value as Vehicle["fuel"] })
                     }
                   >
-                    {["Gasolina", "Híbrido", "Eléctrico", "Diiesel", "Gas Natural", "Híbrido Enchufable"].map((f) => (
+                    {["Gasolina", "Híbrido", "Eléctrico", "Diésel", "Gas Natural", "Híbrido Enchufable"].map((f) => (
                       <option key={f} value={f}>
                         {f}
                       </option>
