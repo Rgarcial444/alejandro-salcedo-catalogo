@@ -79,7 +79,7 @@ export function WhyMe() {
             ¿Una experiencia de compra realmente diferente?
           </h2>
           <p className="mt-3 text-muted-foreground">
-            Como asesor independiente, mi prioridad es que encuentres el auto correcto, no cerrar
+            Como asesor automotriz, mi prioridad es que encuentres el auto correcto, no cerrar
             una venta.
           </p>
         </div>

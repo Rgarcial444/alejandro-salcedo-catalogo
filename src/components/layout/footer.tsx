@@ -23,7 +23,7 @@ export function Footer() {
             Alejandro Salcedo
           </div>
           <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-            Asesor automotriz independiente. Te ayudo a encontrar el auto correcto, con inventario
+            Asesor Automotriz. Te ayudo a encontrar el auto correcto, con inventario
             verificado, atención personalizada y apoyo en cada paso del proceso.
           </p>
           <a
@@ -105,7 +105,7 @@ export function Footer() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row justify-between gap-2 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} Alejandro Salcedo. Todos los derechos reservados.</p>
           <div className="flex items-center gap-4">
-            <p>Asesor automotriz independiente · Ciudad de México</p>
+            <p>Asesor Automotriz · Ciudad de México</p>
             <Link to="/login" className="hover:text-foreground transition flex items-center gap-1">
               <Settings className="h-3 w-3" /> Admin
             </Link>

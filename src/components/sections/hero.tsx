@@ -23,7 +23,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-background/60 backdrop-blur text-xs text-muted-foreground"
           >
             <span className="h-2 w-2 rounded-full bg-[oklch(0.65_0.17_150)] animate-pulse" />
-            Asesor automotriz · CDMX
+            Asesor Automotriz · CDMX
           </motion.div>
 
           <motion.h1

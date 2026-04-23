@@ -35,9 +35,11 @@ export function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="h-8 w-8 rounded-lg bg-foreground text-background grid place-items-center text-sm font-bold">
-            AS
-          </span>
+          <img
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
+            alt="Alejandro Salcedo"
+            className="h-8 w-8 rounded-lg object-cover"
+          />
           <span className="text-base">Alejandro Salcedo</span>
         </Link>
 
