@@ -42,19 +42,18 @@ export function FinancingRequirements() {
 
   return (
     <>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+      <div className="mt-10 flex justify-center">
         <button
           onClick={() => setIsOpen(true)}
-          className="w-full py-4 px-6 rounded-2xl text-sm font-medium transition-all duration-300"
+          className="inline-flex items-center gap-2 py-3 px-6 rounded-full text-sm font-medium transition-all duration-300 hover:scale-[1.02] bg-background"
           style={{
-            background: "linear-gradient(#fff, #fff) padding-box, linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899, #f97316) border-box",
+            background:
+              "linear-gradient(#fff, #fff) padding-box, linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899, #f97316) border-box",
             border: "2px solid transparent",
           }}
         >
-          <span className="flex items-center justify-center gap-2">
-            <FileText className="h-4 w-4" />
-            Ver los requisitos para el financiamiento bancario
-          </span>
+          <FileText className="h-4 w-4" />
+          Ver los requisitos para el financiamiento bancario
         </button>
       </div>
 

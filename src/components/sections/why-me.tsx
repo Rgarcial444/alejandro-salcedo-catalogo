@@ -8,6 +8,7 @@ import {
   UserCheck,
 } from "lucide-react";
 import { GradientCard } from "@/components/ui/gradient-card";
+import { FinancingRequirements } from "@/components/sections/financing-requirements";
 
 const u = (id: string, w = 320) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
@@ -105,6 +106,8 @@ export function WhyMe() {
             </motion.div>
           ))}
         </div>
+
+        <FinancingRequirements />
       </div>
     </section>
   );

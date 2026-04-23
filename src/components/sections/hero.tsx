@@ -108,7 +108,7 @@ export function Hero() {
               className="h-full w-full object-cover"
               loading="eager"
               decoding="async"
-              fetchpriority="high"
+              fetchPriority="high"
             />
           </motion.div>
           <motion.div
