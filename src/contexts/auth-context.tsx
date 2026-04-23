@@ -6,6 +6,7 @@ type AuthContextType = {
   user: User | null;
   loading: boolean;
   signIn: (email: string) => Promise<{ error: string | null }>;
+  signInWithPassword: (email: string, password: string) => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
   isAllowed: boolean;
 };
@@ -56,6 +57,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return { error: null };
   };
 
+  const signInWithPassword = async (email: string, password: string): Promise<{ error: string | null }> => {
+    const normalizedEmail = email.toLowerCase().trim();
+
+    const isEmailAllowed = ALLOWED_EMAILS.some(
+      (allowed) => allowed.toLowerCase() === normalizedEmail,
+    );
+
+    if (!isEmailAllowed) {
+      return { error: "Correo no autorizado" };
+    }
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email: normalizedEmail,
+      password: password,
+    });
+
+    if (error) {
+      return { error: error.message };
+    }
+
+    return { error: null };
+  };
+
   const signOut = async () => {
     await supabase.auth.signOut();
   };
@@ -64,7 +88,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const isAllowed = ALLOWED_EMAILS.some((email) => email.toLowerCase() === userEmail);
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signOut, isAllowed }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signInWithPassword, signOut, isAllowed }}>
       {children}
     </AuthContext.Provider>
   );
