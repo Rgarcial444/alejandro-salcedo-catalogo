@@ -32,7 +32,13 @@ export function InventoryCard({ v, onClick }: { v: Vehicle; onClick: () => void 
         </span>
         <span
           className={`absolute bottom-3 left-3 text-xs font-medium px-2.5 py-1 rounded-full ${
-            v.condition === "Nuevo" ? "bg-green-500 text-white" : "bg-amber-500 text-white"
+            v.condition === "Nuevo"
+              ? "bg-green-500 text-white"
+              : v.condition === "Próximamente"
+                ? "bg-blue-500 text-white"
+                : v.condition === "Apartado"
+                  ? "bg-purple-500 text-white"
+                  : "bg-amber-500 text-white"
           }`}
         >
           {v.condition}

@@ -14,7 +14,7 @@ const priceRanges = [
   { label: "$600k+", min: 600000, max: Infinity },
 ];
 
-const conditions = ["Todos", "Nuevo", "Seminuevo"];
+const availabilityOptions = ["Todas", "Disponible", "Próximamente", "Apartado"];
 
 export function Inventory() {
   const { vehicles, brands, fuels, transmissions } = useVehicles();
@@ -24,22 +24,30 @@ export function Inventory() {
   const [trans, setTrans] = useState("Todas");
   const [priceIdx, setPriceIdx] = useState(0);
   const [condition, setCondition] = useState("Todos");
+  const [availability, setAvailability] = useState("Todas");
   const [query, setQuery] = useState("");
   const [showFilters, setShowFilters] = useState(false);
 
   const filtered = useMemo(() => {
     const range = priceRanges[priceIdx];
+    const isAvailable = (v: typeof vehicles[0]) =>
+      availability === "Todas"
+        ? true
+        : availability === "Disponible"
+          ? v.condition === "Nuevo" || v.condition === "Seminuevo"
+          : availability === v.condition;
     return vehicles.filter((v) => {
       if (brand !== "Todas" && v.brand !== brand) return false;
       if (fuel !== "Todos" && v.fuel !== fuel) return false;
       if (trans !== "Todas" && v.transmission !== trans) return false;
       if (condition !== "Todos" && v.condition !== condition) return false;
+      if (!isAvailable(v)) return false;
       if (v.price < range.min || v.price > range.max) return false;
       if (query && !`${v.brand} ${v.model}`.toLowerCase().includes(query.toLowerCase()))
         return false;
       return true;
     });
-  }, [vehicles, brand, fuel, trans, condition, priceIdx, query]);
+  }, [vehicles, brand, fuel, trans, condition, priceIdx, query, availability]);
 
   const reset = () => {
     setBrand("Todas");
@@ -48,6 +56,7 @@ export function Inventory() {
     setPriceIdx(0);
     setQuery("");
     setCondition("Todos");
+    setAvailability("Todas");
   };
 
   const Chip = ({
@@ -144,7 +153,7 @@ export function Inventory() {
                         Condición
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {conditions.map((c) => (
+                        {["Todos", "Nuevo", "Seminuevo"].map((c) => (
                           <Chip
                             key={c}
                             label={c}
@@ -154,6 +163,23 @@ export function Inventory() {
                         ))}
                       </div>
                     </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">
+                        Disponibilidad
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {availabilityOptions.map((a) => (
+                          <Chip
+                            key={a}
+                            label={a}
+                            active={availability === a}
+                            onClick={() => setAvailability(a)}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                     <div>
                       <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">
                         Marca
@@ -174,7 +200,6 @@ export function Inventory() {
                         ))}
                       </div>
                     </div>
-                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
                     <div>
                       <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">

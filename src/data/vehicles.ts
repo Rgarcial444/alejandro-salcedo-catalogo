@@ -9,7 +9,7 @@ export type Vehicle = {
   fuel: "Gasolina" | "Híbrido" | "Eléctrico" | "Diésel" | "Gas Natural" | "Híbrido Enchufable";
   transmission: "Automática" | "Manual" | "CVT" | "DSG" | "Tiptronic";
   featured?: boolean;
-  condition: "Nuevo" | "Seminuevo";
+  condition: "Nuevo" | "Seminuevo" | "Próximamente" | "Apartado";
   images: string[];
   description: string;
   specs: { label: string; value: string }[];

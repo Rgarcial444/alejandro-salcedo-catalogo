@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS vehicles (
   fuel TEXT NOT NULL,
   transmission TEXT NOT NULL,
   featured BOOLEAN DEFAULT false,
-  condition TEXT NOT NULL DEFAULT 'Seminuevo',
+  condition TEXT NOT NULL DEFAULT 'Seminuevo' CHECK (condition IN ('Nuevo', 'Seminuevo', 'Próximamente', 'Apartado')),
   images TEXT[] NOT NULL,
   description TEXT,
   specs JSONB,
