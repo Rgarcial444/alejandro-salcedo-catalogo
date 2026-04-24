@@ -159,6 +159,48 @@ export const vehicles: Vehicle[] = [
       { label: "Interior", value: "Piel beige" },
     ],
   },
+  {
+    id: "toyota-hilux-2024",
+    brand: "Toyota",
+    model: "Hilux GR Sport",
+    year: 2024,
+    price: 620000,
+    monthly: 12000,
+    mileage: 0,
+    fuel: "Diiesel",
+    transmission: "Automática",
+    condition: "Próximamente",
+    images: [u("photo-1629131726692-1accd0c53ce0"), u("photo-1606664515524-ed2f786a0bd6")],
+    description:
+      "Nueva Hilux GR Sport arrive pronto. Potencia, durabilidad y-Off-Road extrema.",
+    specs: [
+      { label: "Motor", value: "2.8L Diessel" },
+      { label: "Potencia", value: "204 hp" },
+      { label: "Tracción", value: "4x4" },
+      { label: "GR Sport", value: "Paquete deportivo" },
+    ],
+  },
+  {
+    id: "ford-bronco-2023",
+    brand: "Ford",
+    model: "Bronco Badlands",
+    year: 2023,
+    price: 580000,
+    monthly: 11500,
+    mileage: 1500,
+    fuel: "Gasolina",
+    transmission: "Automática",
+    condition: "Apartado",
+    images: [u("photo-1619642751034-765dfdf7c58e"), u("photo-1617483298749-e6b5a91d2f5d")],
+    description:
+      "Bronco Badlands - Apartado. Capacidad Off-Road extrema y tecnología avanzada.",
+    specs: [
+      { label: "Motor", value: "2.7L EcoBoost" },
+      { label: "Potencia", value: "330 hp" },
+      { label: "Tracción", value: "4x4" },
+      { label: "Modos", value: "G.O.A.T." },
+    ],
+  },
 ];
 
 export const brands = Array.from(new Set(vehicles.map((v) => v.brand))).sort();
